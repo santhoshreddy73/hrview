@@ -1,0 +1,17 @@
+{% include 'main.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+{{message}}
+
+{% endfor %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="">enter the mail u want to send</label><br>
+    <input type="text" name="mail" value="{{emp}}"><br><br>
+    <input type="submit" value="send email" background-color="send">
+</form>
+
+{% endblock %}

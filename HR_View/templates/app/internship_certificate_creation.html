@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<form method="post" class="form-center">
+    <h2> Internship Certificate Creation</h2>
+    {% csrf_token %}
+    Mr/Miss/Mrs:<select name="header" id="header" >
+        <option value="Mr">Mr</option>
+        <option value="Ms">Ms</option>
+        <option value="miss">Miss</option>
+    </select><br><br>
+    <label>enter full name</label> <br>
+
+    <input type="text" name="name" size="28" value="{{intern.name}}" required autofocus><br><br>
+
+    <label for="">role</label><br>
+    <input type="text" id="role" name="role" size="28" value="{{intern.role}}" required><br><br>
+
+    <input type="checkbox" id="checkbox" onclick="datecheck()" value="use today date"> Use Today's date
+    <label for="">date</label><br>
+    <input type="date" id="date" name="date" size="28"  required><br><br>
+    <div >
+    <label for="">start_date</label><br>
+    <input type="date" name="start_date" id="" size="28" value="{{intern.joinied_date|date:'Y-m-d'}}" required><br><br>
+    
+    <label for="">end_date</label><br>
+    <input type="date" name="end_date" id="" size="28" value="{{intern.leaving_date|date:'Y-m-d'}}" required><br><br>
+    </div>
+    
+    <input type="submit" value="Create document">
+
+</form>
+<script>
+    function datecheck(){
+        var check =document.getElementById("checkbox").checked
+        if (check !=false){
+            document.getElementById('date').value="{{dt| date:'Y-m-d'}}";
+            
+        }
+        else{document.getElementById('date').value="";}
+    }
+  </script>
+
+{% endblock %}

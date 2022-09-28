@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoURNINe</title>
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="{% static 'test_file.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+   
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            background:"{% static 'images/fnc logo.png' %}"
+        }
+        
+        input[type=text],input[type=date],input[type=number]{
+        width: 220px;
+        }
+        input[type=submit]{
+        border-color:#24a0ed;
+        border-radius: 30px;
+
+        background-color: #24a0ed;
+        }
+        .form-center {
+        color:black;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin: auto;
+        width: 50%;
+        border: 3px solid whitesmoke;
+        padding: 10px;
+        align-items: "center";
+        background-color: whitesmoke;
+        }
+
+        
+    </style>
+</head>
+
+  
+<body>
+    
+<div>
+
+<div align="top">
+    <img src="{% static 'images/fnc logo.png' %}" alt="" height="90" width="400" align="right">
+
+    {% include 'sidenav.html' %} &nbsp;
+    
+    <br><br><br> 
+    <div align="down">
+        {% if request.path == '/main' %}
+        <form  method="post" align="center">
+            
+            {% csrf_token %}
+            <input type="hidden" name="form_id" value="global_search">
+            <input type="text" name="global_search" placeholder="global search" >
+            <input type="submit" name="" id="" value="search">
+        </form>
+        {% endif %}
+    </div>
+    
+</div>
+    <br><br>
+    <br>
+     <hr>
+     
+<div class="">
+
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</body>
+</html>

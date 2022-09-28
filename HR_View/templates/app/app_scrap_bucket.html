@@ -1,0 +1,126 @@
+{% extends 'main.html' %}
+
+{%block content %}
+
+<font color="orange"> <h3>All Letters and Agreements created will be shown here</h3></font>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="search" id="search" placeholder="search">
+</form>
+<br><br>
+<table id="employees" style="overflow-x:auto;">
+    <th>Candidate name</th>
+    <th>letter type</th>
+    <th> created date</th>
+
+    {% if appoint_letters.count > 1 %}
+    {% for apt in appoint_letters %}
+    <tr>
+        <td><a href="/{{apt.path}}">{{apt.employee.name}}</a></td>
+        <td>Appointment letter</td>
+        <td>{{apt.employee.appointmentletter_issued_on}}</td>
+    </tr>
+    {% endfor %}
+    {% elif appoint_letters.count == 1 %}
+    <tr>
+        <td><a href="/{{appoint_letters.path}}">{{appoint_letters.employee.name}}</a></td>
+        <td>Appointment letter</td>
+        <td>{{appoint_letters.employee.appointmentletter_issued_on}}</td>
+    </tr>
+    {% endif %}
+    
+    {% if termination_letters.count > 1%}
+    {% for trm in termination_letters %}
+    
+    <tr>
+        <td><a href="/{{trm.path}}">{{trm.employee.name}}<a></td>
+        <td> termination letter</td>
+        <td>{{trm.employee.termination_letter_issued}}</td>
+    </tr>
+
+    {% endfor %}
+    {% elif termination_letters.count == 1  %}
+    <tr>
+        <td><a href="/{{termination_letters.path}}">{{termination_letters.employee.name}}<a></td>
+        <td> termination letter</td>
+        <td>{{termination_letters.employee.termination_letter_issued}}</td>
+    </tr>
+    {% endif %}
+
+    {% if service_letters.count > 1 %}
+    {% for srv in service_letters %}
+    <tr>
+        <td><a href="/{{srv.path}}">{{srv.employee.name}}</a></td>
+        <td>service letter</td>
+        <td>{{srv.employee.service_agreement_issued_date}}</td>
+    </tr>
+
+    {% endfor %}
+    {% elif service_letters.count == 1 %}
+    <tr>
+        <td><a href="/{{service_letters.path}}">{{service_letters.employee.name}}</a></td>
+        <td>service letters</td>
+        <td>{{service_letters.employee.service_agreement_issued_date}}</td>
+    </tr>
+    {% endif %}
+
+{% if intent_ltrs.count > 1 %}
+{% for intL in intent_ltrs %}
+    <tr>
+        <td><a href="/{{intL.path}}">{{intL.employee.name}}</a></td>
+        <td>intent letter</td>
+        <td>{{intL.employee.letter_of_intent_issued_date}}</td>
+    </tr>
+
+{% endfor %}
+{% elif intent_ltrs.count == 1 %}   
+<tr>
+    <td><a href="/{{intent_ltrs.path}}">{{intent_ltrs.employee.name}}</a></td>
+    <td>intent letter</td>
+    <td>{{intent_ltrs.employee.letter_of_intent_issued_date}}</td>
+</tr>
+{% endif %}
+
+{% if intern_ltrs.count > 1 %}
+
+     {% for intrn_ltr in intern_ltrs %}
+     <tr>
+         <td><a href="/{{intrn_ltr.path}}">{{intrn_ltr.intern.name}}</a></td>
+         <td>internship certificates</td>
+         <td>{{intrn_ltr.intern.internship_letter_issue_date}}</td>
+     </tr>
+
+
+     {% endfor %}
+{% elif intern_ltrs.count == 1 %}
+    <tr>
+        <td><a href="/{{intern_ltrs.path}}">{{intern_ltrs.intern.name}}</a></td>
+        <td>internship certificates</td>
+        <td>{{intern_ltrs.intern.internship_letter_issue_date}}</td>
+    </tr>
+
+    {% endif %}
+
+{% if hik_ltrs.count > 1 %}
+    {% for hk in hik_ltrs %}
+    <tr>
+        <td><a href="/{{hk.path}}">{{hk.employee.name}}</a></td>
+        <td>hike letter</td>
+        <td>{{hk.Created}}</td>
+    </tr>
+    {% endfor %}
+{% elif hik_ltrs.count == 1 %}
+
+<tr>
+    <td><a href="/{{hik_ltrs.path}}">{{hik_ltrs.employee.name}}</a></td>
+    <td>hike letter</td>
+    <td>{{hik_ltrs.Created}}</td>
+</tr>
+{% endif %}
+ </table>
+ 
+
+{% endblock %}
+
+

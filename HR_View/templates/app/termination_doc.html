@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+{% block content %}
+        <form id="termination_form" method="post" class="form-center">
+            <h1>termination letter creation</h1>
+            {% csrf_token %}
+            Mr/Ms/Miss:<select name="header" id="header" >
+                <option value="Mr">Mr</option>
+                <option value="Ms">Ms</option>
+                <option value="miss">Miss</option>
+            </select><br><br>
+            <label for="" id-="name" name="fullname"> enter full name</label> <br>
+            <input type="text" id="fullname" name="fullname" size="28" required autofocus value="{{employee.name}}"><br><br>
+            <label for="">date</label>
+            &nbsp; (<input type="checkbox" id="checkbox" onclick="datecheck()"> Use Today's date) <br>
+
+            <input type="date" id="date" name="date" size="28"  ><br><br>
+
+            <label for="">join_date</label><br>
+            <input type="date" id="join_date" name="join_date" size="28"  value="{{employee.join_date|date:'Y-m-d'}}"><br><br>
+
+            <label for="">role</label><br>
+            <input type="text" id="role" name="role" size="28" required value="{{employee.role}}"><br><br>
+
+            <label for="">temination date i.e, employee last working date</label><br>
+            <input type="date" id="trm_date" name="trm_date"  required value=""><br><br>
+
+            
+            <input type="submit" value="create letter">
+        </form>
+   
+    </div>
+    {% for message in messages %}
+       {{message}}
+    {% endfor %}
+
+
+<script>
+   $("form#termination_form").submit(function(e) {
+
+e.preventDefault();
+
+$.ajax({
+
+    url: "{% url 'termination' employee.id %}",
+    type:'POST',
+    data:{ 
+        header:$('#header').val(),
+        fullname:$('#fullname').val(),
+        date:$('#date').val(),
+        role:$('#role').val(),
+        trm_date:$('#trm_date').val(),
+        address:$('#address').val(),
+        join_date:$('#join_date').val(),
+        csrfmiddlewaretoken: '{{csrf_token}}',
+       
+    },
+    
+    success: function () {
+        {
+        goHome("/view_trm/{{employee.id}}");
+        alert("letter created");
+        }
+    }
+});
+
+})
+
+function datecheck(){
+      var check =document.getElementById("checkbox").checked
+      if (check !=false){
+          document.getElementById('date').value="{{date| date:'Y-m-d'}}";
+          
+      }
+      else{document.getElementById('date').value="";}
+  }
+
+</script>
+{% endblock %}

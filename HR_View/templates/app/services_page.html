@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+<br>
+<a href="{% url 'home' %}" class="button"> home </a>&nbsp;&nbsp;<br><br>
+
+<a href="{% url 'offer_ltr' 0 %}" class="button"> create a new offer letter</a>
+
+<a href="{% url 'letter_of_intent_creation' 0 %}" class="button"> issue a new letter of Intent</a>&nbsp;&nbsp; <br><br>
+
+
+<a href="/intrn_crtificate_crtn/0" class="button"> create a internship certificate</a><br> <br> <br>
+
+
+<a href="{% url 'create_service_agreement' 0 %}" class="button"> issue a new service agreement</a>&nbsp;&nbsp;<br><br>
+
+  <a href="/media/Undertaking_Affadivit .pdf" class="button"> download  undretaling affidavith</a>&nbsp;&nbsp; <br><br>
+
+<a href="{% url 'appointmntcreation' %}" class="button">create appointment letter for a new employees</a>&nbsp;&nbsp;<br><br>
+
+
+{% endblock %}

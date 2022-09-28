@@ -1,0 +1,56 @@
+
+{% extends 'main.html' %}
+{% block content %}
+    
+    <div>
+        <form id="appointment_form" method="post" class="form-center">
+            <h1>Appointment letter creation</h1>
+            {% csrf_token %}
+            <label for="">Ms/Mr/Miss:</label>
+            <select name="header" id="header">
+                <option value="Mr">Mr</option>
+                <option value="Ms">Ms</option>
+                <option value="miss">Miss</option>
+            </select><br><br>
+            <label for="" id-="name" name="fullname"> enter full name</label> <br>
+            <input type="text" id="fullname" name="fullname" size="28" required autofocus><br><br>
+
+            <label for="">date</label>
+
+           &nbsp; (<input type="checkbox" id="checkbox" onclick="datecheck()"> Use Today's date) <br>
+
+            <input type="date" id="date" name="date" size="28" required><br><br>
+
+            <label for="">join date</label><br>
+            <input type="date" id="join_date" name="join_date" required><br><br>
+            <label for="">role</label><br>
+            <input type="text" id="role" name="role" size="28" required><br><br>
+            <label for="">annual ctc</label><br>
+            <input type="number" id="ctc" name="ctc" size="28" required><br><br>
+            <label for="">employee should report to</label><br>
+            <input type="text" id="reports_to" name="reports_to" size="28" required><br><br>
+            <label for="">prior notice time period</label><br>
+            <input type="number" id="notice_period" name="notice_period" size="28" required><br><br>
+
+            
+            
+            <input type="submit">
+
+            {{download_link}}
+        </form>
+    </div>
+    {% for message in messages %}
+       {{message}}
+    {% endfor %}
+<script>
+     function datecheck(){
+      var check =document.getElementById("checkbox").checked
+      if (check !=false){
+          document.getElementById('date').value="{{dt| date:'Y-m-d'}}";
+          
+      }
+      else{document.getElementById('date').value="";}
+  }
+</script>
+
+{% endblock %}
