@@ -1,0 +1,427 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+
+
+
+  .form-center {
+    color:aliceblue;
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(31, 12, 12);
+    padding: 10px;
+    align-items: "center";
+    background-color: rgb(123, 104, 83);
+     }
+
+     input[type=text],input[date],input[type=number]{
+      width: 220px;
+    }
+    input[type=submit]{
+      border-color:rgb(89, 200, 202);
+      border-radius: 25px;
+
+      background-color: rgb(89, 200, 202);
+    }
+    
+  .sidenav {
+    height: 100%;
+    width: 75px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 10px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .main {
+    margin-left: 0px; /* Same as the width of the sidenav */
+    /* Increased text to enable scrolling */
+    padding: 10px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .m1 {
+    margin-left: 10px; /* Same as the width of the sidenav */
+    /* Increased text to enable scrolling */
+    padding: 10px 10px;
+  }
+  
+
+/* ---------- Looking nice on CodePen ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+
+.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 24px;
+  cursor: pointer;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+  background-color: #3A3A3A;
+  }
+  
+  .button {
+    background-color: whitesmoke;
+    color: orange;
+    padding: 1px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin:1px
+  }
+  
+  .small-btn {
+    width: 50px;
+    height: 25px;
+  }
+  
+  .medium-btn {
+    width: 70px;
+    height: 30px;
+  }
+  
+  .big-btn {
+    width: 90px;
+    height: 110px;
+  }
+  
+  .button{
+    position: relative;
+    background-color: white;
+    border-radius: 4em;
+    font-size: 16px;
+    color: orange;
+    padding: 0.8em 1.8em;
+    cursor:pointer;
+    user-select:none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    width: 90px;
+    height: 110px;
+  }
+  
+  .button:hover {
+    transition-duration: 0.1s;
+    background-color: #3A3A3A;
+  }
+  
+  .button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  
+  .button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .button:active {
+    top: 1px;
+  }
+  
+  
+  .nav_button{
+    position: relative;
+    background-color: black;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor:pointer;
+    user-select:none;
+   text-align: center;
+   border-radius: 1em;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    
+  }
+  
+  .nav_button:hover {
+    transition-duration: 0.1s;
+    background-color: rgb(89, 200, 202);
+  }
+  
+  .nav_button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 1em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  
+  .nav_button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .nav_button:active {
+       top: 1px;
+  }
+
+  body{
+    background-image: "static/images/fnc logo.png";
+   }
+
+   /*css for login page*/
+   @import "bourbon";
+
+  
+   
+   .wrapper {	
+     margin-top: 80px;
+     margin-bottom: 80px;
+     align-content: center;
+   }
+   
+   .form-signin {
+     max-width: 380px;
+     padding: 15px 35px 45px;
+     margin: 0 auto;
+     background-color: #eee;
+     border: 1px solid rgba(0,0,0,0.1);  
+   
+     .form-signin-heading,
+     .checkbox {
+      
+       margin-bottom: 30px;
+     }
+
+     .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+      @include box-sizing(border-box);
+  
+      &:focus {
+        z-index: 2;
+      }
+    }
+   
+     .checkbox {
+       font-weight: normal;
+     }
+   
+     
+   
+     input[type="text"] {
+       margin-bottom: -1px;
+       border-bottom-left-radius: 0;
+       border-bottom-right-radius: 0;
+     }
+   
+     input[type="password"] {
+       margin-bottom: 20px;
+       border-top-left-radius: 0;
+       border-top-right-radius: 0;
+     }
+   }
+
+   .div1 {
+    
+    border: 1px solid blue;
+  }
+   button{
+    background-color: rgb(89, 200, 202);
+   }
+
+
+
+
+   body{
+    background:"{% static 'images/fnc logo.png' %}"
+}
+
+input[type=text],input[type=date],input[type=number]{
+width: 220px;
+}
+input[type=submit]{
+border-color:#24a0ed;
+border-radius: 30px;
+
+background-color: DodgerBlue;
+}
+.form-center {
+color:black;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+margin: auto;
+width: 50%;
+border: 3px solid whitesmoke;
+padding: 10px;
+align-items: "center";
+background-color: whitesmoke;
+}
+
+
+body{
+margin:0;
+padding:100px 0 0 40px;
+}
+div#logo_header{
+
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height: 45px;;
+background-color: white;
+border-bottom: 5px solid whitesmoke;
+}
+div#left-sidebar{
+position:absolute;
+top:47px;
+
+left:0;
+width:50px;
+height:100%;
+background-color: rgb(38, 37, 37)  ;
+
+border:5px solid rgb(38, 37, 37) ;
+border-top: 5px solid rgb(38, 37, 37) black;
+
+}
+@media screen{
+body>div#header{
+position:fixed;
+}
+body>div#left-sidebar{
+position:fixed;
+}
+}
+* html body{
+overflow:hidden;
+} 
+* html div#content{
+height:100%;
+overflow:auto;
+margin-left: 60px;
+}
+
+.button_title{
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color: whitesmoke;
+}
+
+
+.sidebar_button{
+top: 100px;;
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+display:block;
+background-color:rgb(38, 37, 37) ;
+border:5px solid rgb(38, 37, 37) ;
+color: #000;
+cursor:pointer;
+text-decoration:none;
+
+}
+.sidebar_button:hover {
+background-color: grey;
+border: 5px solid grey;
+box-shadow: 0 0 15px 10px grey;
+animation: anim-shadow 1.2s forwards;
+
+}
+.service_btn{
+align-items: center;
+height: 130px;
+width: 130px;
+padding: .7em 1.5em;
+font-size: 15px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+background-color:whitesmoke;
+border:5px solid whitesmoke;
+color: #000;
+position:absolute;
+cursor:pointer;
+text-decoration:none;
+border-radius: 1em;
+position: relative;
+}
+
+
+
+.service_btn:hover{
+
+color: orange;
+background-color: grey;
+border:2px solid rgba(112,111,211,1);
+box-shadow: 0 0 10px 40px white;
+animation: anim-shadow .5s forwards;
+
+}
+
+a{
+
+text-decoration: none;
+}
+@keyframes anim-shadow {
+100%{
+
+box-shadow: 0 px 0px 0px 1px rgba(112,111,211,0);
+}
+
+}
+
+/*.service_btn:hover {
+border: 10px solid #f9e506;
+
+box-shadow: 0 0 10px 40px white;
+/*background-color: grey;*/
+
+}*/

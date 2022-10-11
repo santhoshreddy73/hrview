@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<form action="" method="post" id="service_agreement" class="form-center">
+    <h2>service agreement creation form</h2>
+    {% csrf_token %}
+    <label for="">issuing to :</label><br>
+    <input type="text" id="name" name="name" value="{{emply.name}}"><br><br>
+    <label for="">agreement duration:(in years)</label><br>
+    <input type="number" id="employee_duration" name="employee_duration"  required><br><br>
+    <label for="">traning period for employee(in months)</label><br>
+    <input type="number" id="training_period" value="{{emply.traning_period}}" name="traning_period" required><br><br>
+    <label for="">penaulty to the employee on violating agreement(in Rs/-)</label><br>
+    <input type="number" id="penaulty" value="{{emply.penaulty}}" name="penaulty" required><br><br>
+    <input type="submit" value="create document">
+</form>
+
+
+{% endblock %}

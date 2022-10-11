@@ -1,0 +1,57 @@
+{% extends 'main.html'%}
+{% block content %}
+
+
+<form action="" method="post" id="hike_issue" class="form-center">
+    <h2>Hike letter creation</h2>
+    {% csrf_token %}
+    <label for="">issuing hike for: </label><br><br>
+    Mr/Ms/Miss:<select name="header" id="header" >
+        <option value="Mr">Mr</option>
+        <option value="Ms">Ms</option>
+        <option value="miss">Miss</option>
+        </select><br>
+    <input type="text" name="name" value="{{employee.name}}" id="name"><br><br>
+    <label for="">hike_worth</label><br>
+    <input type="number" name="hike_worth" id="hike"><br>
+    <label for=""> hike issue date</label><br>
+    <input type="date" name="date" value="2022" id="date"><br><br>
+    <label for="">hike valid from </label>  <br>
+    <input type="month" name="start_date" id="start_date"><label for="">&nbsp;to</label>&nbsp;&nbsp;<input type="month" name="end_date" id="end_date"><br><br>
+    <input type="submit" name="" id="" value="submit and download">
+</form>
+<!--goHome("/hike_info/{{employee.id}}");-->
+<!--
+<script>
+
+    $("form#hike_issue").submit(function(e) {
+   
+   e.preventDefault();
+   
+   $.ajax({
+   
+       url: "{% url 'hike_issue' employee.id %}",
+       type:'POST',
+       data:{ 
+           name:$('#name').val(),
+           date:$('#date').val(),
+           hike_worth:$('#hike').val(),
+           start_date:$('#start_date').val(),
+           end_date:$('#end_date').val(),
+           csrfmiddlewaretoken: '{{csrf_token}}',
+          
+       },
+       
+       success: function () {
+           {
+           downloadDoc("/{{download_link}}");
+           alert("document downloaded,please check the home pafe for details updation");
+           
+           }
+       }
+   });
+   
+   })
+   </script>
+-->
+{% endblock %}

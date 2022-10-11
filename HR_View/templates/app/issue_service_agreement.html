@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<form action="" method="post" id="service_agreement" class="form-center">
+    <h2>service agreement creation form</h2>
+    {% csrf_token %}
+    <label for="">issuing to :</label><br>
+    <input type="text" id="name" name="name" value="{{emply.name}}" size="28" ><br><br>
+
+    <label for="">agreement duration:(in years)</label><br>
+    <input type="number" id="employee_duration" name="employee_duration"  size="28" required><br><br>
+
+    <label for="">traning period for employee(in months)</label><br>
+    <input type="number" id="training_period" value="{{emply.traning_period}}" name="traning_period" size="28" required><br><br>
+
+    <label for="">penaulty to the employee on violating agreement(in Rs/-)</label><br>
+    <input type="number" id="penaulty" value="{{emply.penaulty}}" name="penaulty" size="28" required><br><br>
+    
+    <input type="submit" value="create document">
+</form>
+<script>
+    $("#service_agreement").submit(function(e) {
+   
+   e.preventDefault();
+   
+   $.ajax({
+   
+       url: "{% url 'create_service_agreement' x %}",
+       type:'POST',
+       data:{ 
+        
+           name:$('#name').val(),
+           penaulty:$('#penaulty').val(),
+           employee_duration:$('#employee_duration').val(),
+           traning_period:$('#training_period').val(),
+           csrfmiddlewaretoken: '{{csrf_token}}',
+          
+       },
+       
+       success: function () {
+           {
+           
+           alert("Agreement created,redirecting to preview page");
+           goHome("/preview_servc_agreement/{{emply.id}}");
+           }
+       }
+   });
+   
+   })
+
+</script>
+
+{% endblock %}

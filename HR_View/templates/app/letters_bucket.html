@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+
+{%block content %}
+
+
+<font color="orange"> <h3>All Letters and Agreements created will be shown here</h3></font>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="search" id="search" placeholder="search">
+</form>
+
+{% if messages %}
+
+
+{% for message in messages %}
+    {% if message.tags == 'error'%}
+          <font color="red">{{message.message}}</font>
+      {% elif message.tags == 'info' %}
+      <font color="orange">{{message.message}}</font>
+      {% else %}
+      <font color="green">{{message.message}}</font>
+    {% endif %}
+{% endfor %}
+
+
+{% else %}
+
+<br><br>
+<table id="employees" style="overflow-x:auto;">
+    <th>Candidate name</th>
+    <th>letter type</th>
+    <th> created date</th>
+
+    {% for apt in appoint_letters %}
+    <tr>
+        <td><a href="/{{apt.path}}">{{apt.employee.name}}</a></td>
+        <td>Appointment letter</td>
+        <td>{{apt.employee.appointmentletter_issued_on}}</td>
+    </tr>
+    {% endfor %}
+
+
+    {% for off in offr_ltrs %}
+    <tr>
+        <td><a href="/{{off.path}}">{{off.employee.name}}</a></td>
+        <td>offer letter</td>
+        <td>{{off.employee.appointmentletter_issued_on}}</td>
+    </tr>
+    {% endfor %}
+    
+    {% for trm in termination_letters %}
+    
+    <tr>
+        <td><a href="/{{trm.path}}">{{trm.employee.name}}<a></td>
+        <td> termination letter</td>
+        <td>{{trm.employee.termination_letter_issued}}</td>
+    </tr>
+
+    {% endfor %}
+    
+    {% for srv in service_letters %}
+    <tr>
+        <td><a href="/{{srv.path}}">{{srv.employee.name}}</a></td>
+        <td>service letter</td>
+        <td>{{srv.employee.service_agreement_issued_date}}</td>
+    </tr>
+
+    {% endfor %}
+    
+{% for intL in intent_ltrs %}
+    <tr>
+        <td><a href="/{{intL.path}}">{{intL.employee.name}}</a></td>
+        <td>intent letter</td>
+        <td>{{intL.employee.letter_of_intent_issued_date}}</td>
+    </tr>
+
+{% endfor %}
+
+
+     {% for intrn_ltr in intern_ltrs %}
+     <tr>
+         <td><a href="/{{intrn_ltr.path}}">{{intrn_ltr.intern.name}}</a></td>
+         <td>internship certificates</td>
+         <td>{{intrn_ltr.intern.internship_letter_issue_date}}</td>
+     </tr>
+
+
+     {% endfor %}
+
+
+    {% for hk in hik_ltrs %}
+    <tr>
+        <td><a href="/{{hk.path}}">{{hk.employee.name}}</a></td>
+        <td>hike letter</td>
+        <td>{{hk.Created}}</td>
+    </tr>
+    {% endfor %}
+
+ </table>
+ 
+{% endif %}
+{% endblock %}
+
+

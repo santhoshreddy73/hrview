@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<br>
+
+{% load static %}
+<a class="" href="{% url 'appointmntcreation' %}">
+    <button class="service_btn">
+      <lord-icon
+        src="https://cdn.lordicon.com/bhfjfgqz.json"
+        trigger="hover"
+        colors="primary:#e83a30"
+        style="width:40px;height:40px;">
+      </lord-icon> <br>
+    appointment letter
+     </button>
+</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<a href="{% url 'letter_of_intent_creation' 0 %}">
+<button class="service_btn">
+    <lord-icon
+      src="https://cdn.lordicon.com/kjkiqtxg.json"
+      trigger="hover"
+      style="width:40px;height:40px">
+    </lord-icon> <br>
+      intent letter
+    </button>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+  
+  
+    <a href="{% url 'offer_ltr' 0 %}">
+      <button class="service_btn">
+        <lord-icon
+          src="https://cdn.lordicon.com/tqywkdcz.json"
+          trigger="hover"
+          style="width:40px;height:40px">
+        </lord-icon><br>
+  
+          offer letter
+      </button>
+    </a>
+  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   
+  
+  
+    <a href="/intrn_crtificate_crtn/0">
+      <button class="service_btn">
+        
+        <lord-icon
+          src="https://cdn.lordicon.com/coowbsor.json"
+          trigger="hover"
+          style="width:40px;height:40px">
+        </lord-icon>
+        <br>
+        Internship certificate
+      </button>
+    </a>
+  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+    <a href="/media/Undertaking_Affadivit .pdf">
+      <button class="service_btn">
+        <lord-icon
+          src="https://cdn.lordicon.com/pqxdilfs.json"
+          trigger="hover"
+          style="width:40px;height:40px">
+        </lord-icon>
+       Undertaking Affadivit</button>
+    </a>
+    <br>
+    <br>
+    <br>
+
+    <a href="{% url 'create_service_agreement' 0 %}">
+        <button class="service_btn"> <br> <img src="{% static 'images/handshake.svg' %}" height="37" width="37  " alt="" align="center">   
+          service agreement
+    
+        </button>
+      </a>
+
+{% endblock %}
+
+
+
+

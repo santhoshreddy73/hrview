@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block content %}
+<div align="right">
+    <a href="{% url 'hike_issue' employee.id %}">issue hike</a>
+</div>
+<h1> {{employee.name}} hike details</h1>
+<table id="employees">
+    <th> last hike issued On:</th>
+   
+    <th>hike duration </th>
+    {% for hike in hikes %}
+    <tr>
+        <td>{{hike.hike_letter_issued_date}}</td>
+        <td>{{hike.hike_duration_start_year|date:'b,Y'}}-{{hike.hike_duration_end_year|date:'b,Y'}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+
+{% endblock %}

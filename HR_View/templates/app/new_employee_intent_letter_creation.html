@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form action="" method="post" id="letter_of_intent" class="form-center">
+    <h2>Intent letter creation</h2>
+    {% csrf_token %}
+    <label for="">full name:</label><br>
+    <input type="text" id="name" name="name" required autofocus value="{{emply.name}}"><br><br>
+
+    <label for=""> offering role </label><br>
+    <input type="text" id="role_offered_as"  name="present_role"required value=""><br><br>
+
+    <label for="">Joining Date</label><br>
+    <input type="date" id="join_date" name="date" value="{{emply.join_date|date:'Y-m-d'}}"><br><br>
+
+    <label for="">will be trained as</label><br>
+    <input type="text" name="temporary_role" id="temporary_role" value="{{emply.temporary_role}}" required><br><br>
+
+    <label for="">after trainig he will be appointed as</label><br>
+    <input type="text" id="appointed_as" name="appointed_as" value="{{emply.role}}" required><br><br>
+
+    <label for="">annual CTC</label><br>
+    <input type="number" id="ctc" name="ctc" value="{{emply.annual_package}}" required><br><br>
+    <input type="submit" value="create document">
+
+</form>
+
+
+{% endblock %}

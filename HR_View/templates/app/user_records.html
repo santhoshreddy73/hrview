@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1 style="color: lightblue;">Users Activities</h1>
+{% if request.user.is_superuser %}
+<table id="employees">
+    <th> user</th>
+    <th>activity</th>
+    {% for record in records%}
+    <tr>
+        <td>{{record.user}}</td>
+        <td>{{record.record}} {{record.date}}</td>
+        
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<font color="red"> you are not allowed here</font>
+{% endif %}
+{% endblock %}

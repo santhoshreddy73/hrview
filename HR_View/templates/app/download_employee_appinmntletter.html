@@ -1,0 +1,92 @@
+
+{% extends 'main.html' %}
+{% block content %}
+    
+    <div>
+        <form action="" class="form-center" id="appointment_form" class="form-center">
+            <h1>Create Appointment Letter</h1>
+            Mr/Ms/Miss:<select name="header" id="header" >
+                <option value="Mr">Mr</option>
+                <option value="Ms">Ms</option>
+                <option value="miss">Miss</option>
+            </select><br><br>
+
+            <label for="" id-="name" name="fullname" value="{{emplye.name}}"> enter full name</label> <br>
+            <input type="text" id="fullname" name="fullname" size="28"value="{{emplye.name}}"><br><br>
+            <label for="">date</label>
+            
+            &nbsp; (<input type="checkbox" id="checkbox" onclick="datecheck()"> Use Today's date) <br>
+            <input type="date" id="date" name="date" size="28" required><br><br>
+            <label for="">join date</label><br>
+            <input type="date" name="" id="join_date"  value="{{emplye.join_date|date:'Y-m-d'}}" size="28" required><br><br>
+            <label for="">role</label><br>
+            <input type="text" id="role" name="role" size="28" value="{{emplye.role}}"><br><br>
+            <label for="">annual ctc</label><br>
+            {% if emplye.annual_package %}
+            <input type="number" id="ctc" name="ctc" size="28" value="{{emplye.annual_package}}"><br><br>
+            {% else %}
+            <input type="number" id="ctc" name="ctc" size="28" value=""><br><br>
+            {% endif %}
+            <label for="">notice_period(in months)</label><br>
+            <input type="number" id="notice_period" value="{{emplye.notice_period}}"><br><br>
+            <label for="">reports to</label><br>
+            <input type="text" id="reports_to" size="28"><br><br>
+
+           
+            <input type="submit">
+        </form>
+        <br><br>
+        <a href="{% url 'home' %}">GO-BACK</a>
+    </div>
+
+    
+    {% for message in messages %}
+       {{message}}
+    {% endfor %}
+<script>
+$("form#appointment_form").submit(function(e) {
+
+e.preventDefault();
+
+$.ajax({
+
+    url: "{% url 'dwnldDoc' emplye.id %}",
+    type:'POST',
+    data:{ 
+        fullname:$('#fullname').val(),
+        header:$('#header').val(),
+        date:$('#date').val(),
+        role:$('#role').val(),
+        ctc:$('#ctc').val(),
+        join_date:$('#join_date').val(),
+        address:$('#address').val(),
+        notice_period:$('#notice_period').val(),
+        reports_to:$('#reports_to').val(),
+        csrfmiddlewaretoken: '{{csrf_token}}',
+       
+    },
+    
+    success: function () {
+        {
+        //downloadDoc("/{{download_link}}");
+        alert("document created");
+        //go("/preview_apt/{{emplye.id}}");
+        goHome("/preview_apt/{{emplye.id}}");
+        }
+    }
+});
+
+})
+
+function datecheck(){
+      var check =document.getElementById("checkbox").checked
+      if (check !=false){
+          document.getElementById('date').value="{{dt| date:'Y-m-d'}}";
+          
+      }
+      else{document.getElementById('date').value="";}
+  }
+
+</script>
+
+{% endblock %}

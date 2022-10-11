@@ -1,0 +1,167 @@
+<body>
+    <div id="header">
+            <a href="{% url 'appointmntcreation' %}">create appointment letter for the new employees</a>
+        </div> <br>
+    
+    </div>
+    <div align="center">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="search" name="search" placeholder="search">
+            <input type="submit" value="search">
+        </form>
+    
+    </div>
+    {% if employees %}
+    
+        hello,{{request.user.username}} ,employees count:{{employees.count}} 
+    
+            <table id="employees" style="overflow-x:auto;">
+                <tr>
+                <th>name</th>&nbsp;
+                
+                <th>role</th>
+                <th>join date</th>&nbsp;
+                <th>last appointment letter downloaded on</th>&nbsp;&nbsp;&nbsp;
+                <th>download link</th>
+                <th>termination issued or not</th>
+                <th>termination date if letter issued</th>
+                <th>link to download the termination letter</th>
+                <th>hike details</th>
+                </tr>
+                {% for emply in employees %}
+                <tr>
+                    <td>{{emply.name}}</td>
+                    <td>{{emply.role}}</td></td>
+                    <td>{{emply.join_date}}</td>
+                    <td>{{emply.appointmentletter_issued_on}}</td>
+                    <td><a href="{% url 'dwnldDoc' emply.id %}">download</a></td>
+                    {% if emply.termination_letter_issued %}
+                    <td>yes</td>
+                    <td>{{emply.termination_letter_issued|date:'d b Y H:i:s'}}</td>
+                    {% else %}
+                    <td>No</td>
+                    <td>Active employee</td>
+                    {% endif %}
+                    <td><a href="{% url 'termination' emply.id %}">download</a></td>
+                    <td><a href="{% url 'hike_info' emply.id %}">info</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+    {% else %}
+    <font color="red">no relatable search data available </font>
+    {% endif %}
+    
+    </body>
+
+
+
+    .btn {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        font-size: 24px;
+        cursor: pointer;
+        }
+        
+        /* Darker background on mouse-over */
+        .btn:hover {
+        background-color: rgb(89, 200, 202);;
+        }
+        
+        .button {
+          background-color: whitesmoke;
+          color: orange;
+          padding: 1px;
+          border-radius: 10px;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          margin:1px
+        }
+        
+        .small-btn {
+          width: 50px;
+          height: 25px;
+        }
+        
+        .medium-btn {
+          width: 70px;
+          height: 30px;
+        }
+        
+        .big-btn {
+          width: 90px;
+          height: 110px;
+        }
+        
+        .button{
+          position: relative;
+          background-color: white;
+          border-radius: 4em;
+          font-size: 16px;
+          color: orange;
+          padding: 0.8em 1.8em;
+          cursor:pointer;
+          user-select:none;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          transition-duration: 0.4s;
+          -webkit-transition-duration: 0.4s; /* Safari */
+        }
+        
+        .button:hover {
+          transition-duration: 0.1s;
+          background-color: #3A3A3A;
+        }
+        
+        .button:after {
+          content: "";
+          display: block;
+          position: absolute;
+          border-radius: 4em;
+          left: 0;
+          top:0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: all 0.5s;
+          box-shadow: 0 0 10px 40px white;
+        }
+        
+        .button:active:after {
+          box-shadow: 0 0 0 0 white;
+          position: absolute;
+          border-radius: 4em;
+          left: 0;
+          top:0;
+          opacity: 1;
+          transition: 0s;
+        }
+        
+        .button:active {
+          top: 1px;
+        }
+        
+        
+        
+        /* ---------- Looking nice on CodePen ---------- */
+        
+
+
+        <div class="sidenav">
+          <a href="{% url 'main' %}" class="nav_button"><img src="{% static 'images/service.png' %}" alt="" width="30px" height="25px"></a>
+          <br>
+          <a href="{% url 'home' %}" class="nav_button"><div class="" ><i class="fa fa-home" style='font-size:24px'></i></div><a> <br>
+          
+          <a href="{% url 'user_downloads' %}" class="nav_button"><img src="{% static 'images/download_history.png'%}" alt=""width="30px" height="25px"></a> <br>
+      
+          <a href="{% url 'user_activities' %}" class="nav_button" title="users activities"><img src="{% static 'images/use.png'%}" alt=""  width="30px" height="25px"></a>
+          <br>
+          {% if request.user.is_authenticated%}
+  
+          <a href="{% url 'logout' %}" class="nav_button">logout</a>
+  
+          {% endif %}
+        </div>

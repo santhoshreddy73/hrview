@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNC LOGIN</title>
+  <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+</head>
+<body>
+  <h1>FOURNINE welcomes yoU </h1>
+  <div class="wrapper" allign="center">
+    <form class="form-signin" method="post" > 
+        {% csrf_token %}      
+      <h2 class="form-signin-heading">Login to access</h2>
+      <label for=""> Username or Email</label> <br>
+      <input type="text" class="form-control" size="51" name="id" placeholder="Email Address or Username" required="" autofocus="" /> <br> <br>
+      <label for=""> password </label> <br>
+      <input type="password" class="form-control" size=" 51" name="password" placeholder="Password" required=""/>      <br> <br>
+      {% for message in messages%}
+      {% if message.tags == 'error'%}
+          <font color="red">{{message.message}}</font>
+      {% else %}
+      <font color="orange">{{message.message}}</font>
+      {% endif %}
+      {% endfor %}
+
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+       <br>
+       
+    
+    </form>
+  </div> <br>
+
+</body>
+</html>
