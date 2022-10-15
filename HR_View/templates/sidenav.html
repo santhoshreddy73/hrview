@@ -15,7 +15,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: silver;
+  background-color: lightblue;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -52,8 +52,9 @@ body {
 <body>
 
 <div id="mySidenav" class="sidenav" >
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div align="middle">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" height="25px" width="25px">&times;</a>
+  <div style="align-content:center;">
+    <br><br><br>
   <a href="{% url 'main' %}" class="nav_button"><img src="{% static 'images/service.png' %}" alt="" width="30px" height="25px"></a>
           <br>
           <a href="{% url 'home' %}" class="nav_button"><div class="" ><i class="fa fa-home" style='font-size:24px'></i></div><a> <br>
@@ -63,7 +64,7 @@ body {
           <a href="{% url 'user_downloads' %}" class="nav_button"><img src="{% static 'images/download_history.png'%}" alt=""width="30px" height="25px"></a> <br>
           <a href="{% url 'user_activities' %}" class="nav_button" title="users activities"><img src="{% static 'images/use.png'%}" alt=""  width="30px" height="25px"></a>
           <br>
-          <a href="{% url 'files' %}" class="nav_button" title="users activities"><img src="{% static 'images/files.png'%}" alt=""  width="40px" height="40px"></a> <br>
+          <a href="{% url 'files' %}" class="nav_button" title="generated letters"><img src="{% static 'images/box.svg' %}" alt="" width="30px" height="25px"></a><br>
           {% endif %}
           
           {% if request.user.is_authenticated%}
@@ -73,7 +74,7 @@ body {
           {% endif %}
   </div>
 </div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> &nbsp;
+<span  width="15px" height="15px" style="font-size:25px;cursor:pointer" onclick="openNav()">&#9776; </span> 
 
 <script>
 function openNav() {

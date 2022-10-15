@@ -67,40 +67,37 @@ class Interns(models.Model):
     email=models.EmailField(null=True,blank=True)
 
 class Appointment_Letters(models.Model):
-    employee=models.OneToOneField(employees,on_delete=models.CASCADE)
+    employee=models.OneToOneField(employees,on_delete=models.CASCADE,related_name='appointment_letter')
     path=models.CharField(max_length=400,null=True,blank=True)
     
 
 class Termination_Letters(models.Model):
-    employee=models.OneToOneField(employees,on_delete=models.CASCADE)
+    employee=models.OneToOneField(employees,on_delete=models.CASCADE,related_name='termination_letter')
     path=models.CharField(max_length=400,null=True,blank=True)
     
 
 class Intent_Letters(models.Model):
-    employee=models.OneToOneField(employees,on_delete=models.CASCADE)
+    employee=models.OneToOneField(employees,on_delete=models.CASCADE,related_name='intent_letter')
     path=models.CharField(max_length=400,null=True,blank=True)
    
 
 class Hike_letters(models.Model):
-    employee=models.ForeignKey(employees,on_delete=models.CASCADE)
+    employee=models.ForeignKey(employees,on_delete=models.CASCADE,)
     path=models.CharField(max_length=400,null=True,blank=True)
     Created=models.DateTimeField(null=True,blank=True)
    
 
 class Service_letters(models.Model):
-    employee=models.OneToOneField(employees,on_delete=models.CASCADE)
+    employee=models.OneToOneField(employees,on_delete=models.CASCADE,related_name='service_letter')
     path=models.CharField(max_length=400,null=True,blank=True)
     
 
-class test_store_files(models.Model):
-    file=models.FileField()
-
 class Intenship_certificates(models.Model):
-    intern=models.OneToOneField(Interns,on_delete=models.CASCADE)
+    intern=models.OneToOneField(Interns,on_delete=models.CASCADE,related_name='intenship_certificate')
     path=models.CharField(max_length=400,null=True,blank=True)
     
 
 class Offer_Letters(models.Model):
-    employee=models.OneToOneField(employees,on_delete=models.CASCADE)
+    employee=models.OneToOneField(employees,on_delete=models.CASCADE,related_name='offer_letter')
     path=models.CharField(max_length=400,null=True,blank=True)
     

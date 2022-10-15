@@ -1,8 +1,8 @@
 {% extends 'main.html' %}
 {% block content %}
-<h2 style="color: lightblue;">users download history</h2>
+<h2 style="color: lightblue;">Letters Creation history</h2>
 {% if request.user.is_superuser %}
-<table id="employees">
+<table id="">
     <th> user</th>
     <th>activity</th>
     {% for record in download_records %}

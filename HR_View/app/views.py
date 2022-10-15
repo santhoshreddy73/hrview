@@ -240,16 +240,15 @@ def termination_letter(request,pk):
         x=list(map(int,date.split('-')))
         y=datetime(x[0],x[1],x[2])
         z=y.strftime('%b %d,%Y')
-        
         termination_letter_generator(
-            header=header,
-            date=str(z),
-            role=roLe,
-            name=naMe,
-            ref_date=datetime.now().strftime('%Y/%d/%m/%H%M'),
-            join_date=join_Date,
-            termination_date=str(trm_date),
-            path=paTH
+                header=header,
+                date=str(z),
+                role=roLe,
+                name=naMe,
+                ref_date=datetime.now().strftime('%Y/%d/%m/%H%M'),
+                join_date=join_Date,
+                termination_date=str(trm_date),
+                path=paTH
         )
         date=datetime.now()
         #print(employee.termination_letter_issued)
@@ -345,7 +344,7 @@ def hike_issue(request,pk):
 def main(request):
     #print('url compoinent',request.path)
     if request.method=='POST':
-        if request.POST['form_id'] == 'global_search':
+        if request.POST.get('form_id') == 'global_search':
             srch=request.POST['global_search']
             test=srch.split('&&')
             letters_srch=srch.split('^')
@@ -418,62 +417,60 @@ def user_downloads(request):
 
 @login_required(login_url='main')
 def view_issued_letters(request):
-    
     if request.method=='POST':
-        if request.POST.get('form_id') == 'global_search':
-            pass
-        else:
-            srch=request.POST['search']
-            test=srch.split('^')
         
-            if len(test)>=2:
-                test[1]=test[1].lower()
+        
+        srch=request.POST['search']
+        test=srch.split('^')
+    
+        if len(test)>=2:
+            test[1]=test[1].lower()
 
-                if test[1]=='appointment_letter' or test[1]=='apt' or test[1]=='appointment':
-                    appoint_letters=Appointment_Letters.objects.filter(employee__name__icontains=test[0])
-                    dict={'appoint_letters':appoint_letters}
-                    return render(request,'app/letters_bucket.html',dict)
+            if test[1]=='appointment_letter' or test[1]=='apt' or test[1]=='appointment':
+                appoint_letters=Appointment_Letters.objects.filter(employee__name__icontains=test[0])
+                dict={'appoint_letters':appoint_letters}
+                return render(request,'app/letters_bucket.html',dict)
 
-                elif test[1]=='termination' or test[1] == 'trm' or test[1] == 'termination_letter' or test[1] == 'trml' :
-                    termination_letters=Termination_Letters.objects.filter(employee__name__icontains=test[0])
-                    dict={'termination_letters':termination_letters}
-                    return render(request,'app/letters_bucket.html',dict)
+            elif test[1]=='termination' or test[1] == 'trm' or test[1] == 'termination_letter' or test[1] == 'trml' :
+                termination_letters=Termination_Letters.objects.filter(employee__name__icontains=test[0])
+                dict={'termination_letters':termination_letters}
+                return render(request,'app/letters_bucket.html',dict)
 
-                elif test[1]=='service_letters' or test[1] =='srv' or test[1] =='service_agreements' or test[1]=='service' or test[1]=='service agreements':
-                    service_letters=Service_letters.objects.filter(employee__name__icontains=test[0])
-                    dict={'service_letters':service_letters}
-                    return render(request,'app/letters_bucket.html',dict)
+            elif test[1]=='service_letters' or test[1] =='srv' or test[1] =='service_agreements' or test[1]=='service' or test[1]=='service agreements':
+                service_letters=Service_letters.objects.filter(employee__name__icontains=test[0])
+                dict={'service_letters':service_letters}
+                return render(request,'app/letters_bucket.html',dict)
 
-                elif test[1]=='intent_letter' or test[1]=='intent_ltr' or test[1]=='int'or  test[1]=='intl'or test[1]=='intent' or test[1]=='letter of intent' or test[1]=='intent letter' :
-                    intent_ltrs=Intent_Letters.objects.filter(employee__name__icontains=test[0])
-                    dict={'intent_ltrs':intent_ltrs}
-                    return render(request,'app/letters_bucket.html',dict)
-                
-                elif test[1]=='offer_letter' or test[1]=='off_l' or test[1]=='off'or  test[1]=='offr_l'or test[1]=='offer_l' or test[1]=='offer letter'  :
-                    off_ltrs=Offer_Letters.objects.filter(employee__name__icontains=test[0])
-                    dict={'offr_ltrs':off_ltrs}
-                    return render(request,'app/letters_bucket.html',dict)
+            elif test[1]=='intent_letter' or test[1]=='intent_ltr' or test[1]=='int'or  test[1]=='intl'or test[1]=='intent' or test[1]=='letter of intent' or test[1]=='intent letter' :
+                intent_ltrs=Intent_Letters.objects.filter(employee__name__icontains=test[0])
+                dict={'intent_ltrs':intent_ltrs}
+                return render(request,'app/letters_bucket.html',dict)
+            
+            elif test[1]=='offer_letter' or test[1]=='off_l' or test[1]=='off'or  test[1]=='offr_l'or test[1]=='offer_l' or test[1]=='offer letter' or test[1]=='offl'  :
+                off_ltrs=Offer_Letters.objects.filter(employee__name__icontains=test[0])
+                dict={'offr_ltrs':off_ltrs}
+                return render(request,'app/letters_bucket.html',dict)
 
-                else:
-                    messages.error(request,'no letter available,on search for '+srch)
-                    return render(request,'app/letters_bucket.html')
             else:
-                appoint_letters=Appointment_Letters.objects.filter(employee__name__icontains=srch).order_by('employee__appointmentletter_issued_on').reverse()
-                termination_letters=Termination_Letters.objects.filter(employee__name__icontains=srch)
-                service_letters=Service_letters.objects.filter(employee__name__icontains=srch)
-                intent_ltrs=Intent_Letters.objects.filter(employee__name__icontains=srch)
+                messages.error(request,'no letter available,on search for '+srch)
+                return render(request,'app/letters_bucket.html')
+        else:
+            appoint_letters=Appointment_Letters.objects.filter(employee__name__icontains=srch).order_by('employee__appointmentletter_issued_on').reverse()
+            termination_letters=Termination_Letters.objects.filter(employee__name__icontains=srch)
+            service_letters=Service_letters.objects.filter(employee__name__icontains=srch)
+            intent_ltrs=Intent_Letters.objects.filter(employee__name__icontains=srch)
 
-                intern_ltrs=Intenship_certificates.objects.filter(intern__name__icontains=srch)
-                hik_ltrs=Hike_letters.objects.filter(employee__name__icontains=srch)
-                off_ltrs=Offer_Letters.objects.filter(employee__name__icontains=srch)
+            intern_ltrs=Intenship_certificates.objects.filter(intern__name__icontains=srch)
+            hik_ltrs=Hike_letters.objects.filter(employee__name__icontains=srch)
+            off_ltrs=Offer_Letters.objects.filter(employee__name__icontains=srch)
                 #print('test after appointment letter')
                 #print(appoint_letters.count())
-                if appoint_letters.count() == 0 and termination_letters.count() == 0 and intern_ltrs.count() == 0 and service_letters.count() == 0 and intern_ltrs.count() == 0 and hik_ltrs.count() == 0 and off_ltrs.count() == 0:
-                    messages.error(request,'no letter available,on search for '+srch)
-                    return render(request,'app/letters_bucket.html')
-                else:
-                    dict={'appoint_letters':appoint_letters,'termination_letters':termination_letters,'service_letters':service_letters,'intent_ltrs':intent_ltrs,'intern_ltrs':intern_ltrs,'hik_ltrs':hik_ltrs,'offr_ltrs':off_ltrs}
-                    return render(request,'app/letters_bucket.html',dict)
+            if appoint_letters.count() == 0 and termination_letters.count() == 0 and intern_ltrs.count() == 0 and service_letters.count() == 0 and intern_ltrs.count() == 0 and hik_ltrs.count() == 0 and off_ltrs.count() == 0:
+                messages.error(request,'no letter available,on search for '+srch)
+                return render(request,'app/letters_bucket.html')
+            else:
+                dict={'appoint_letters':appoint_letters,'termination_letters':termination_letters,'service_letters':service_letters,'intent_ltrs':intent_ltrs,'intern_ltrs':intern_ltrs,'hik_ltrs':hik_ltrs,'offr_ltrs':off_ltrs}
+                return render(request,'app/letters_bucket.html',dict)
                 
     appoint_letters=Appointment_Letters.objects.all()
     termination_letters=Termination_Letters.objects.all()
@@ -558,45 +555,21 @@ def new_appoint_letter(request):
 def preview_apt(request,pk):
     emp=employees.objects.get(id=pk)
     apt=Appointment_Letters.objects.get(employee=emp)
-    f=apt.path
-    st=[]
+    dwnld_path=apt.path
     mail_link='/send_apt/'+str(apt.id)
     #+str(apt.id)
-
-    return render(request,'app/preview.html',{'st':st,'f':f,'id':'downloaddoc/'+str(pk),'mail_link':mail_link})
+    return render(request,'app/preview.html',{'dwnld_path':dwnld_path,'id':'downloaddoc/'+str(pk),'mail_link':mail_link})
 
 @login_required(login_url='main')
 def preview_int_ltr(request,pk):
     emp=employees.objects.get(id=pk)
     int_ltr=Intent_Letters.objects.get(employee=emp)
-    f=int_ltr.path
+    dwnld_path=int_ltr.path
     #print(int_ltr.id)
     #print(f)
-    st=[]
     mail_link='/send_intL/'+str(int_ltr.id)
-    
-    return render(request,'app/preview.html',{'st':st,'f':f,'id':f'letter_of_intent_creation/{pk}','mail_link':mail_link})
+    return render(request,'app/preview.html',{'dwnld_path':dwnld_path,'edit_path':f'letter_of_intent_creation/{pk}','mail_link':mail_link})
 
-
-
-
-    ##tasks left to be completed
-    """
-    1)still internship letter and the undertaking affidavith are to be implemnted (done)
-    2)preview should be implemented before and files should be saved after downloaded
-    3)`front end should be highly optimized some cool feaueres like dark mode and settings should be implemented here
-    4)also intern table and some of coloumns in employee table should be created\
-    edit employees details from the download u
-    preview should be added and on download it should be downloaded and it needs to be sended to the via whatsapp and over the email
-    think about data analtics this is your first real time project it should be optimized,reliable and lighter to use
-    many things to be look over here
-
-    """
-    """ some of flaws to report HR
-    service agreement creatd date will be saved as the joining date for time issuing
-    ask suggestion to use join date dynamic like he takes it as input or default save dates as downloading dates
-
-    """
 
 @login_required(login_url='main')
 def issue_letter_of_intent(request,pk):
@@ -681,11 +654,10 @@ def issue_letter_of_intent(request,pk):
 def preview_servc_agreement(request,pk):
     emp=employees.objects.get(id=pk)
     srv_agmnt=Service_letters.objects.get(employee=emp)
-    f=srv_agmnt.path
+    dwnld_path=srv_agmnt.path
     #print(f)
     mail_link='/send_srv_agmnt/'+str(srv_agmnt.id)
-    st=[]
-    return render(request,'app/preview.html',{'st':st,'f':f,'id':f'service_agreement_creation/{pk}','mail_link':mail_link})
+    return render(request,'app/preview.html',{'f':dwnld_path,'edit_path':f'service_agreement_creation/{pk}','mail_link':mail_link})
  
 @login_required(login_url='main')
 def issue_new_service_agreement(request,pk):
@@ -848,19 +820,17 @@ def view_intern_certificate(request,pk):
 
     intrn=Interns.objects.get(id=pk)
     certfict=Intenship_certificates.objects.get(intern=intrn)
-    path=certfict.path
+    dwnld_path=certfict.path
     mail_link='/send_Iltr/'+str(certfict.id)
-    st=[]
-    
-    return render(request,'app/preview.html',{'st':st,'f':path,'id':f'intrn_crtificate_crtn/{pk}','mail_link':mail_link})
+    return render(request,'app/preview.html',{'dwnld_path':dwnld_path,'edit_path':f'intrn_crtificate_crtn/{pk}','mail_link':mail_link})
 
 def view_hik(request,pk):
     hik=Employees_hike.objects.get(id=pk)
-    path=hik.path
-    id=f'hike_edit/{hik.id}'
-    st=[]
+    dwnld_path=hik.path
+    edit_path=f'hike_edit/{hik.id}'
+    
     mail_link=mail_link='/send_hik_ltr/'+str(hik.id)
-    return render(request,'app/preview.html',{'st':st,'f':path,'id':id,'mail_link':mail_link})
+    return render(request,'app/preview.html',{'dwnld_path':dwnld_path,'edit_path':edit_path,'mail_link':mail_link})
 
 @login_required(login_url='main')
 def hike_edit(request,pk):
@@ -1047,13 +1017,12 @@ def offer_ltr_generator(request,pk):
 @login_required(login_url='main')
 def view_offer_ltr(request,pk):
     off_ltr=Offer_Letters.objects.get(id=pk)
-    f=off_ltr.path
+    dwnld_path=off_ltr.path
     #print(f)
     mail_link='/send_offer_ltr/'+str(off_ltr.id)
-    return render(request,'app/preview.html',{'f':f,'id':f'offer_ltr/{off_ltr.employee.id}','mail_link':mail_link})
+    return render(request,'app/preview.html',{'dwnld_path':dwnld_path,'edit_path':f'offer_ltr/{off_ltr.employee.id}','mail_link':mail_link})
 
 # below 7 functions, are used to send mail to the emmployees,with an attachment to generated pdfs
-
 @login_required(login_url='main')
 def send_apt_pdf_mail_on_pdf(request,pk):
     apt_ltr=Appointment_Letters.objects.get(id=pk)
@@ -1222,15 +1191,23 @@ def preview_trm(request,pk):
 
     emp=employees.objects.get(id=pk)
     trm_ltr=Termination_Letters.objects.get(employee=emp)
-    f=trm_ltr.path
+    dwnld_path=trm_ltr.path
     ##print(itrm_r.id)
     #print(f)
     st=[]
 
     mail_link='/send_trm_ltr/'+str(trm_ltr.id)
 
-    return render(request,'app/preview.html',{'st':st,'f':f,'id':f'termination/{pk}','mail_link':mail_link})
+    return render(request,'app/preview.html',{'st':st,'dwnld_path':dwnld_path,'edit_path':f'termination/{pk}','mail_link':mail_link})
 
+#here view_letter_name or preview_ltr_name are used to handle preview page which provides download,preview functionallities
+ 
+"""here except for apt ltr,to handle letter ceration for  new employee and letter creation for existing,i used  pk,for handling ltr creation for
+new employee i used pk as as pk will never be zero"""
 
-    
+#testing sidebar template
 
+def template_test(request):
+    employs=employees.objects.all().order_by('name')
+    intrns=Interns.objects.all().order_by('name')
+    return render(request,'test_table.html',{'employees':employs,'interns':intrns})

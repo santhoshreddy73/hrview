@@ -1,0 +1,908 @@
+
+body{
+    background:"{% static 'images/fnc logo.png' %}"
+}
+
+
+
+body{
+margin:0;
+padding:100px 0 0 40px;
+}
+div#logo_header{
+
+position:fixed;
+top: 0px;
+left:0;
+width:100%;
+height: 41px;
+background-color: white;
+border-bottom: 5px solid whitesmoke;
+
+}
+div#left-sidebar{
+position:absolute;
+top:47px;
+
+left:0;
+width:50px;
+height:100%;
+background-color: rgb(38, 37, 37)  ;
+
+border:5px solid rgb(38, 37, 37) ;
+border-top: 5px solid rgb(38, 37, 37) black;
+
+}
+@media screen{
+body>div#header{
+position:fixed;
+}
+body>div#left-sidebar{
+position:fixed;
+}
+}
+* html body{
+overflow:hidden;
+} 
+* html div#content{
+height:100%;
+overflow:auto;
+margin-left: 60px;
+}
+
+.button_title{
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color: whitesmoke;
+}
+
+
+.sidebar_button{
+top: 100px;;
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+display:block;
+background-color:rgb(38, 37, 37) ;
+border:5px solid rgb(38, 37, 37) ;
+color: #000;
+cursor:pointer;
+text-decoration:none;
+
+}
+.sidebar_button:hover {
+background-color: grey;
+border: 5px solid grey;
+box-shadow: 0 0 15px 10px grey;
+animation: anim-shadow 1.2s forwards;
+
+}
+
+.service_btn-parent{
+    display: flex;
+    flex-wrap: wrap;
+}
+.service_btn{
+width:calc(33%-10px);
+height:140px;
+margin-top:10px;
+margin-left: 10px;
+font-size: 15px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+background-color:whitesmoke;
+border:5px solid whitesmoke;
+color: #000;
+border-radius: 1em;
+
+}
+
+
+
+.service_btn:hover{
+
+color: orange;
+background-color: grey;
+border:2px solid rgba(112,111,211,1);
+box-shadow: 0 0 10px 40px white;
+animation: anim-shadow .5s forwards;
+
+}
+
+a{
+
+text-decoration: none;
+}
+@keyframes anim-shadow {
+100%{
+
+box-shadow: 0 px 0px 0px 1px rgba(112,111,211,0);
+}
+
+}
+
+@media (min-width:640px) {
+    .service_btn{
+        width: calc(25%-10px);
+    }
+    
+}
+
+@media(min-width:940px){
+    .service_btn
+    {
+        width:calc(20%-10px);
+    }
+}
+
+/*test table csss*/
+
+
+.table-container{
+  font-family: 'Abel';font-size: 15px;;
+  justify-content: center;
+  margin:5vh auto;
+  width: 90%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid DarkOrange;
+  border-radius: 13px; 
+  border-spacing: 0;
+  
+}
+
+.table tr:nth-of-type(even){
+  background-color: #fff;
+  color:black;
+}
+.table tr:nth-of-type(odd){
+  background-color: #fff;
+  color: #333;
+}
+
+th{
+  background-color: te;
+  color: #000;
+}
+
+td,th{
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.label{
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.label-success{
+  background-color: #5cb85c;
+}
+
+.label-warning{
+  background-color: #f0ad4e;
+}
+
+.label-danger{
+  background-color: #d9534f;
+}
+
+.btn{
+  color: #fff;
+  background-color: #37BC9B;
+  font-size: 13px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn:hover{
+  background-color: #2e9c81;
+}
+
+
+@media only screen and (max-width:768px),
+(min-device-width:768px) and (max-device-width:992px){
+  .table-container{
+    width:95%;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .table table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr{
+    background-color: #fff;
+    display: block;
+  }
+
+  .table thead tr{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tr{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .table td{
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .table td::before{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .table td:nth-of-type(1)::before{
+    content: "Full Name";
+  }
+
+  .table td:nth-of-type(2)::before{
+    content: "role";
+  }
+
+  .table td:nth-of-type(3)::before{
+    content: "join date";
+  }
+
+  .table td:nth-of-type(4)::before{
+    content: "apt letter info";
+  }
+
+  .table td:nth-of-type(5)::before{
+    content: "Intent letter info";
+  }
+
+  .table td:nth-of-type(6)::before{
+    content: "srvc agmnt info";
+  }
+  .table td:nth-of-type(7)::before{
+    content: "offer letter info:";
+  }
+
+  .table td:nth-of-type(8)::before{
+    content: "termination ltr info:";
+  }
+
+  .table td:nth-of-type(9)::before{
+    content: "Hike info:";
+  }
+
+
+}
+
+.table tr:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+h1{
+    color: #000;
+}
+
+
+.i-table-container{
+    display: flex;
+    justify-content: center;
+    margin:20vh auto;
+    width: 90%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  
+
+
+.intern-table-container{
+  
+  display: flex;
+  justify-content: center;
+  margin:5vh auto;
+  width: 90%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.intern-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.intern-table tr:nth-of-type(even){
+  background-color: whitesmoke;
+  color:black;
+}
+.intern-table tr:nth-of-type(odd){
+  background-color: whitesmoke;
+  color: #333;
+}
+
+th{
+background-color: #006cc6;
+  color: #fff;
+}
+
+td,th{
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.label{
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.label-success{
+  background-color: #5cb85c;
+}
+
+.label-warning{
+  background-color: #f0ad4e;
+}
+
+.label-danger{
+  background-color: #d9534f;
+}
+
+
+@media only screen and (max-width:768px),
+(min-device-width:768px) and (max-device-width:992px){
+  .intern-table-container{
+    width:95%;
+    background-color: whitesmoke;
+    color: #000;
+  }
+
+  .intern-table table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr{
+    display: block;
+  }
+
+  .intern-table thead tr{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .intern-table tr{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .intern-table td{
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .intern-table td::before{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .intern-table td:nth-of-type(1)::before{
+    content: "Intern Name";
+  }
+
+  .intern-table td:nth-of-type(2)::before{
+    content: "Intern role";
+  }
+
+  .intern-table td:nth-of-type(3)::before{
+    content: "Intern certficate info";
+  }
+
+  
+
+
+}
+
+.intern-table tr:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+h1{
+    color: #000;
+}
+
+
+
+
+
+.letters-table-container{
+  
+  display: flex;
+  justify-content: center;
+  margin:5vh auto;
+  width: 90%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.letters-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.letters-table tr:nth-of-type(even){
+  background-color: whitesmoke;
+  color:black;
+}
+.letters-table tr:nth-of-type(odd){
+  background-color: whitesmoke;
+  color: #333;
+}
+
+th{
+background-color: #006cc6;
+  color: #fff;
+}
+
+td,th{
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.label{
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.label-success{
+  background-color: #5cb85c;
+}
+
+.label-warning{
+  background-color: #f0ad4e;
+}
+
+.label-danger{
+  background-color: #d9534f;
+}
+
+
+@media only screen and (max-width:768px),
+(min-device-width:768px) and (max-device-width:992px){
+  .letters-table-container{
+    width:95%;
+    background-color: whitesmoke;
+    color: #000;
+  }
+
+  .letters-table table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr{
+    display: block;
+  }
+
+  .letters-table thead tr{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .letters-table tr{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .letters-table td{
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .letters-table td::before{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .letters-table td:nth-of-type(1)::before{
+    content: "letter issued to:";
+  }
+
+  .letters-table td:nth-of-type(2)::before{
+    content: "letter type";
+  }
+
+  .letters-table td:nth-of-type(3)::before{
+    content: "created date";
+  }
+
+  
+
+
+}
+
+.letters-table tr:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+h1{
+    color: #000;
+}
+
+
+
+
+
+
+.user-records-table-container{
+  
+  display: flex;
+  justify-content: center;
+  margin:5vh auto;
+  width: 90%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.user-records-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-records-table tr:nth-of-type(even){
+  background-color: whitesmoke;
+  color:black;
+}
+.user-records-table tr:nth-of-type(odd){
+  background-color: whitesmoke;
+  color: #333;
+}
+
+th{
+background-color: #006cc6;
+  color: #fff;
+}
+
+td,th{
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.label{
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.label-success{
+  background-color: #5cb85c;
+}
+
+.label-warning{
+  background-color: #f0ad4e;
+}
+
+.label-danger{
+  background-color: #d9534f;
+}
+
+
+@media only screen and (max-width:768px),
+(min-device-width:768px) and (max-device-width:992px){
+  .user-records-table-container{
+    width:95%;
+    background-color: whitesmoke;
+    color: #000;
+  }
+
+  .user-records-table table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr{
+    display: block;
+  }
+
+  .user-records-table thead tr{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .user-records-table tr{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .user-records-table td{
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .user-records-table td::before{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .user-records-table td:nth-of-type(1)::before{
+    content: "User:";
+  }
+
+  .user-records-table td:nth-of-type(2)::before{
+    content:"activity";
+  }
+
+ 
+  
+
+
+}
+
+.user-records-table tr:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+h1{
+    color: #000;
+}
+
+
+/* css for main theme header and sidebar */
+        
+header{
+    position: absolute;
+    top: 0;
+    Left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    z-index: 10;
+    background: transparent;
+    border:2px whitesmoke;
+    text-decoration: none;
+}
+header a{
+    text-decoration: none;
+}
+
+header .logo{
+    position: relative;
+    
+    font-size: 1.5em  ;
+    color: #fff;
+    text-decoration: none;
+}
+
+header .navigation{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+header .navigation li{
+    list-style: none;
+    margin:0 10px;
+}
+
+header .navigation li a{
+    color:black;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+header .navigation li a:hover{
+    color: #ffeb3b;
+    
+}
+
+header .search{
+    position: relative;
+    margin-top: 5px;
+    width:300px;
+    height: 30px;
+    padding-top: 5px;
+}
+
+header .search input{
+    position: absolute;
+    top:0;
+    Left:0;
+    width: 80%;
+    height: 80%;
+    color:#000;
+    background: transparent;
+    outline:none;
+    border:1px solid #000;
+    border-radius: 4px;
+    padding:0 10px 0 45px;
+}
+
+header .search input::placeholder{
+    color:#000;
+}
+
+header .search .fa-search{
+    position:absolute;
+    top:40%;
+    transform: translateY(-40%);
+    left:10px;
+    color:#000;
+    border-right: 1px solid #000;
+    padding-right: 10px;
+}
+
+ #left-sidebar{
+    position:absolute;
+    top:80px;
+    left:0;
+    width:50px;
+    height:100%;
+    
+    border-top: 5px solid rgb(38, 37, 37) black;
+
+}
+
+#sidebar{
+    left: 0;
+    position: absolute;
+    top: 50px;
+    background-color: rgb(38, 37, 37)  ;
+    border:5px solid rgb(38, 37, 37) ;
+    width: 50px;
+    height: 100%;
+  
+}
+
+body>div#sidebar{
+    position:fixed;
+}
+body>header{
+    position: fixed;
+}
+.main-content{
+    margin-top: 0px;
+    margin-left: 50px;
+}
+
+@media(max-width:720px){
+   header{ 
+    padding:1px 20px;
+    flex-direction: column;
+   }
+   #sidebar{
+    position: absolute;
+    top:145px
+   }
+   .main-content{
+    margin-top: 50px;
+   }
+}
+
+
+.home-list-search input{
+
+  position: absolute;
+ margin-left: 29%;
+  width: 10%;
+  height: 30px;
+  color:#000;
+  background: transparent ;
+  outline:none;
+  border:1px solid black;
+  border-radius: 4px;
+  padding:0 10px 0 45px;
+}
+
+.home-list-search .fa-search{
+  position:absolute;
+  margin-left: 30%;
+  transform: translateY(49%);
+  color:blue;
+  border-right: 1px solid #000;
+  padding-right: 10px;
+}
+
+.home-list-search input::placeholder{
+  color:black;
+}
+
+th{
+  background-color: white;
+  color: black;
+}
+
+th,td,tr{
+  text-align: left;
+}

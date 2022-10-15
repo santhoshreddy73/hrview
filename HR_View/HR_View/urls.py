@@ -58,7 +58,7 @@ urlpatterns = [
 
     path('send_Iltr/<str:pk>',views.send_internship_ltr,name='send_Iltr'),
     path('view_trm/<str:pk>',views.preview_trm,name='view_trm'),
-   
+    path('table',views.template_test)
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

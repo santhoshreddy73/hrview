@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoURNINe</title>
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="{% static 'test_file.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <script src="https://cdn.lordicon.com/pzdvqjsp.js"></script>
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/designed_css.css' %}">
+    <style>
+
+  </style>
+</head>
+<body>
+  
+<div id="logo_header"> 
+
+
+  <img style="left:10px;" src="{% static 'images/fnc logo.png' %}" alt="" height="45" width="200" align="left">
+
+  
+  {% if request.path == '/main' %}
+    <div>
+    <center class="">
+    <form  method="post">
+        {% csrf_token %}
+        <input type="hidden" name="form_id" value="global_search">
+        <br>
+        <input style="margin: auto; " type="text" name="global_search" placeholder="search" size="">
+        <input type="submit" name="" id="" value="search">
+    </form>
+  </center>
+  </div>
+  {% endif %}
+
+  {% if request.user.is_superuser %}
+    <a class="button_title" style=" color:black;position:absolute;top:15px;right:25px; font-size:15px;" href="/admin">
+      <img src="{% static 'images/settings_icon.png'%}" style="position:absolute;top:-2px; right:45px;"s alt="" width="22px" height="20px">
+      ADMIN</a>
+  {% endif %}
+
+</div>
+
+<div id="left-sidebar" align="">  
+  <center>
+    <br>
+    
+    <a href="{% url 'main' %}" class="sidebar_button">
+      <img src="{% static 'images/service.png' %}" alt="" width="25px" height="25px">
+      <span class="button_title">services</span></a>
+    
+    <br>
+    
+   
+    <a href="{% url 'home' %}" class="sidebar_button">
+      <lord-icon
+        src="https://cdn.lordicon.com/osuxyevn.json"
+        trigger="hover"
+        colors="primary:#ffffff"
+        style="width:25px;height:25px">
+      </lord-icon>
+      <span class="button_title" >home</span><a> 
+    
+    <br>
+
+  
+  
+    <a href="{% url 'user_downloads' %}" class="sidebar_button">
+      <lord-icon
+        src="https://cdn.lordicon.com/kipaqhoz.json"
+        trigger="hover"
+        colors="primary:#ffffff"
+        style="width:24px;height:24px">
+      </lord-icon>
+      <span class="button_title">letters history</span></a>
+    
+    <br>
+ 
+
+
+ 
+    <a href="{% url 'user_activities' %}" class="sidebar_button"  title="users activities">
+      <lord-icon
+        src="https://cdn.lordicon.com/weoiqraa.json"
+        trigger="hover"
+        colors="primary:#ffffff"
+        style="width:24px;height:24px">
+      </lord-icon><br>
+      <span class="button_title">user activities</span>
+    </a> 
+    
+  
+<br>
+
+
+  
+    <a href="{% url 'files' %}"class="sidebar_button" title="generated letters">
+      <lord-icon
+        src="https://cdn.lordicon.com/fpmskzsv.json"
+        trigger="hover"
+        colors="primary:#d1f3fa"
+        style="width:25px;height:25px">
+      </lord-icon>
+      <span>letters</span>
+    </a>
+ 
+  <br>
+
+  <a href="{% url 'logout' %}" class="sidebar_button" style="color:whitesmoke;">logout</a>
+ 
+ 
+  </center>
+
+</div>
+
+<div id="content" style="margin-left: 38px;"> 
+
+ {% block content %}
+
+
+
+ {% endblock %}
+</div>
+</body>
+</html>

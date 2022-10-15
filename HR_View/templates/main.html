@@ -11,78 +11,260 @@
     <script src="{% static 'test_file.js' %}"></script>
     
     <link rel="stylesheet" href="{% static 'css/test.css' %}">
-   
+    <script src="https://cdn.lordicon.com/pzdvqjsp.js"></script>
     <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/designed_css.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body{
-            background:"{% static 'images/fnc logo.png' %}"
-        }
-        
-        input[type=text],input[type=date],input[type=number]{
-        width: 220px;
-        }
-        input[type=submit]{
-        border-color:#24a0ed;
-        border-radius: 30px;
-
-        background-color: #24a0ed;
-        }
-        .form-center {
-        color:black;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        margin: auto;
-        width: 50%;
-        border: 3px solid whitesmoke;
-        padding: 10px;
-        align-items: "center";
-        background-color: whitesmoke;
-        }
 
         
+        header{
+            position: absolute;
+            top: 0;
+            Left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            z-index: 10;
+            background: transparent;
+            border:2px whitesmoke;
+            text-decoration: none;
+        }
+        header a{
+            text-decoration: none;
+        }
+
+        header .logo{
+            position: relative;
+            
+            font-size: 1.5em  ;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        header .navigation{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        header .navigation li{
+            list-style: none;
+            margin:0 10px;
+        }
+
+        header .navigation li a{
+            color:black;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        header .navigation li a:hover{
+            color: #ffeb3b;
+            
+        }
+
+        header .search{
+            position: relative;
+            margin-top: 5px;
+            width:300px;
+            height: 30px;
+            padding-top: 5px;
+        }
+
+        header .search input{
+            position: absolute;
+            top:0;
+            left:0;
+            width:80%;
+            height:80%;
+            color:#000;
+            background: ;
+            outline:none;
+            border:1px solid #000;
+            border-radius: 4px;
+            padding:0 10px 0 45px;
+        }
+
+        header .search input::placeholder{
+            color:#000;
+        }
+
+        header .search .fa-search{
+            position:absolute;
+            top:40%;
+            transform: translateY(-40%);
+            left:10px;
+            color:#000;
+            border-right: 1px solid #000;
+            padding-right: 10px;
+        }
+        
+         #left-sidebar{
+            position:absolute;
+            top:80px;
+            left:0;
+            width:50px;
+            height:100%;
+            
+            border-top: 5px solid rgb(38, 37, 37) black;
+
+        }
+        
+        #sidebar{
+            left: 0;
+            position: absolute;
+            top: 50px;
+            background-color: rgb(38, 37, 37)  ;
+            border:5px solid rgb(38, 37, 37) ;
+            width: 50px;
+            height: 100%;
+          
+        }
+
+        body>div#sidebar{
+            position:fixed;
+        }
+        body>header{
+            position: fixed;
+        }
+        .main-content{
+            margin-top: 0px;
+            margin-left: 50px;
+        }
+
+        @media(max-width:720px){
+           header{ 
+            padding:1px 20px;
+            flex-direction: column;
+           }
+           #sidebar{
+            position: absolute;
+            top:145px
+           }
+           .main-content{
+            margin-top: 50px;
+           }
+        }
     </style>
 </head>
 
-  
 <body>
-    
-<div>
+    <header>
+        <div class="logo">
+            <img style="left:10px;" src="{% static 'images/fnc logo.png' %}" alt="" height="45" width="200" align="left">
+        </div>
+        
+        <div class="search" align="">    
+            {% if request.path == '/main' %}
+        <div>
+            <form  method="post">
+                {% csrf_token %}
+                <input type="hidden" name="form_id" value="global_search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input  type="text" name="global_search" placeholder="search">
+            </form>
+        </div>
+  {% endif %}
+        </div>
 
-<div align="top">
-    <img src="{% static 'images/fnc logo.png' %}" alt="" height="90" width="400" align="right">
-
-    {% include 'sidenav.html' %} &nbsp;
+        <ul class="navigation">
+            {% if request.user.is_superuser %}
+            <a class="button_title" style=" color:black; font-size:15px; margin-bottom: 5px;" href="/admin">
+            <img src="{% static 'images/settings_icon.png'%}"  alt="" width="22px" height="20px">ADMIN &nbsp;&nbsp;&nbsp;</a>
+            {% endif %}
+        </ul>
+    </header>
     
-    <br><br><br> 
-    <div align="down">
-        {% if request.path == '/main' %}
-        <form  method="post" align="center">
+    <div id="sidebar">
+
+    <center>
+            <br>
             
-            {% csrf_token %}
-            <input type="hidden" name="form_id" value="global_search">
-            <input type="text" name="global_search" placeholder="global search" >
-            <input type="submit" name="" id="" value="search">
-        </form>
-        {% endif %}
+            <a href="{% url 'main' %}" class="sidebar_button">
+            <img src="{% static 'images/service.png' %}" alt="" width="25px" height="25px">
+            <span class="button_title">services</span></a>
+            
+            <br>
+            
+        
+            <a href="{% url 'home' %}" class="sidebar_button">
+            <lord-icon
+                src="https://cdn.lordicon.com/osuxyevn.json"
+                trigger="hover"
+                colors="primary:#ffffff"
+                style="width:25px;height:25px">
+            </lord-icon>
+            <span class="button_title" >home</span><a> 
+            
+            <br>
+
+        
+        
+            <a href="{% url 'user_downloads' %}" class="sidebar_button">
+            <lord-icon
+                src="https://cdn.lordicon.com/kipaqhoz.json"
+                trigger="hover"
+                colors="primary:#ffffff"
+                style="width:24px;height:24px">
+            </lord-icon>
+            <span class="button_title">letters history</span></a>
+            
+            <br>
+        
+
+
+        
+            <a href="{% url 'user_activities' %}" class="sidebar_button"  title="users activities">
+            <lord-icon
+                src="https://cdn.lordicon.com/weoiqraa.json"
+                trigger="hover"
+                colors="primary:#ffffff"
+                style="width:24px;height:24px">
+            </lord-icon><br>
+            <span class="button_title">user activities</span>
+            </a> 
+            
+        
+        <br>
+
+
+        
+            <a href="{% url 'files' %}"class="sidebar_button" title="generated letters">
+                <lord-icon
+                    src="https://cdn.lordicon.com/fpmskzsv.json"
+                    trigger="hover"
+                    colors="primary:#ffffff"
+                    style="width:24px;height:24px">
+                </lord-icon>
+            <span class="button_title">letters</span>
+            </a>
+        
+        <br>
+
+        <a href="{% url 'logout' %}" class="sidebar_button" style="color:whitesmoke;">logout</a>
+        
+ 
+  </center>
+
     </div>
+
+    <div class="main-content">
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+           
     
-</div>
-    <br><br>
-    <br>
-     <hr>
-     
-<div class="">
 
 
-
-{% block content %}
-
-
-{% endblock %}
-
-
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    
 </body>
 </html>

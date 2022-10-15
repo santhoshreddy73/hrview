@@ -1,9 +1,11 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1 style="color: lightblue;">Users Activities</h1>
 {% if request.user.is_superuser %}
-<table id="employees">
-    <th> user</th>
+<h1 style="color: lightblue;">Users Activities</h1>
+
+<div class="user-records-table-container">
+<table class="user-records-table">
+    <th> User</th>
     <th>activity</th>
     {% for record in records%}
     <tr>
@@ -15,5 +17,7 @@
 </table>
 {% else %}
 <font color="red"> you are not allowed here</font>
+</div>
+
 {% endif %}
 {% endblock %}

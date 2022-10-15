@@ -1,135 +1,190 @@
 {% extends 'main.html' %}
+
 {% block content %}
-<div id="header">
 
-<br>
-</div>
-    <div align="middle">
-        <form action="" method="post">
-            {% csrf_token %}
-            <input type="search" name="search" placeholder="search">
-            <input type="submit" value="search">
-        </form>
-    </div>
-
-    {% for message in messages%}
+{% for message in messages%}
       {% if message.tags == 'error'%}
           <font color="red">{{message.message}}</font>
       {% else %}
       <font color="orange">{{message.message}}</font>
       {% endif %}
-    {% endfor %}
-
-    
-    {% if employees.count != 0 %}
-    <font color="#00008B"><h1> Employees</h1></font>
-        <font color="#8A8A8A">hello,{{request.user.username}} ,employees count:{{employees.count}} </font>    <br>
-    
-            <table id="employees" style="overflow-x:auto;">
-                <tr>
-                <th>name</th>&nbsp;
-                
-                <th>role</th>
-                <th>join date</th>&nbsp;
-                <th>last appointment letter downloaded on</th>&nbsp;&nbsp;&nbsp;
-                <th>letter of intent date if issued</th>
-                <th>service Agreements info</th>
-                <th>Offer letter info</th>
-                <th>termination letter info</th>
-
-                <th>hike details</th>
-                </tr>
-                {% for emply in employees %}
-                <tr>
-                    <td>{{emply.name}}</td>
-                    <td>{{emply.role}}</td></td>
-                    
-                    <td>
-                        {% if emply.join_date %}
-                        {{emply.join_date}}
-                        {% else %}
-                        info not available
-                        {% endif %}
-                    </td>
-
-                    {% if emply.appointmentletter_issued_on %}
-                    <td>{{emply.appointmentletter_issued_on}}  <br> <a href="{% url 'dwnldDoc' emply.id %}">download again</a></td>
-                    {% else %}
-                    <td>
-                        Not Issued
-                        <a href="{% url 'dwnldDoc' emply.id %}">download</a></td>
-                    {% endif %}
-                    {% if emply.letter_of_intent_issued_date %}
-                    <td>{{emply.letter_of_intent_issued_date}}
-                        <br><a href="{% url 'letter_of_intent_creation' emply.id %}">download</a>
-                    </td>
-                    {% else %}
-                    <td>Not issued 
-                        <br><a href="{% url 'letter_of_intent_creation' emply.id %}">download</a>
-
-                    </td>
-                    {% endif %}
-
-                    <td>
-                        {% if emply.service_agreement_issued_date %}
-                        {{emply.service_agreement_issued_date}}<a href="{% url 'create_service_agreement' emply.id %}">download again</a></td>
-                        {% else %}
-                        Not Issued
-                        <a href="{% url 'create_service_agreement' emply.id %}">download</a>
-                        {% endif %}
-                    <td>
-                        {% if emply.offer_letter_issued_datetime %}
-                        {{emply.offer_letter_issued_datetime}}
-                        <a href="{% url 'offer_ltr' emply.id %}">download again</a>
-                        {% else %}
-                          Not issued
-                          <a href="{% url 'offer_ltr' emply.id %}">download</a>
-                        {% endif %}
-
-                    </td>
+{% endfor %}
+<style>
 
 
-                    {% if emply.termination_letter_issued %}
-                    <td>
-                        {{emply.termination_letter_issued|date:'d b Y H:i:s'}}
-                        <a href="{% url 'termination' emply.id %}">download</a>
-                    </td>
-                    {% else %}
-                    <td>
-                        Active employee
-                        <a href="{% url 'termination' emply.id %}">download</a>
-                    </td>
-                    {% endif %}
-                    <td><a href="{% url 'hike_info' emply.id %}">info</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-    {% else %}
-    <font color="red"> no employee available</font>
-    {% endif %}
-    <font color="#EB9100"><h2>Interns INFo</h2></font>
-    <table id="employees" style="overflow-x:auto;">
-    <th>intern name</th>
-    <th>intern role</th>
-    <th>intern certficate info</th>
-    {% if interns.count != 0 %}
-        {% for intern in interns %}
-            <tr>
-                <td>{{intern.name}}</td>
-                <td>{{intern.role}}</td>
-                <td>
-                    {{intern.internship_letter_issue_date|date:'d b Y H:i:s'}} <br>
-                    <a href="{% url 'intrn_crtificate_crtn' intern.id %}">download again</a>
-                </td>
-            </tr>
+   .home-list-search input{
+
+            position: absolute;
+           margin-left: 29%;
+            width: 10%;
+            height: 30px;
+            color:#000;
+            background: transparent ;
+            outline:none;
+            border:1px solid black;
+            border-radius: 4px;
+            padding:0 10px 0 45px;
+        }
+
+        .home-list-search .fa-search{
+            position:absolute;
+            margin-left: 30%;
+            transform: translateY(49%);
+            color:blue;
+            border-right: 1px solid #000;
+            padding-right: 10px;
+        }
+
+        .home-list-search input::placeholder{
+            color:black;
+        }
+</style>
+
+
+<div class="home-list-search">
+    <form action="" method="post" class="">
+        {% csrf_token %}
+        <font style="font-size: 30px; display: inline;" color="black" >Employees</font> &nbsp; 
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input  type="text" name="search" placeholder="search">
+        
+    </form>
+</div>
+
+{% if employees.count != 0 %}
+
+
+<br>
+<font color="#8A8A8A">hello,{{request.user.username}} ,employees count:{{employees.count}} </font>  
+
+
+<div class="table-container">
+<table class="table">
+    <thead>
+    <tr>
+        <th>name</th>&nbsp;      
+        <th>role</th>
+        <th>join date</th>&nbsp;
+        <th>apt letter info</th>
+        <th>intent letter info</th>
+        <th>service agreement info</th>
+        <th>Offer letter info</th>
+        <th>termination letter info</th>
+        <th>hike info</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        {% for emply in employees %}
+        <tr>
+            <td>{{emply.name}}</td>
+            <td>{{emply.role}}</td></td>
+            
+            <td>
+                {% if emply.join_date %}
+                {{emply.join_date}}
+                {% else %}
+                info not available
+                {% endif %}
+            </td>
+
+            {% if emply.appointmentletter_issued_on %}
+            <td>{{emply.appointmentletter_issued_on}}  <br> <a href="{% url 'dwnldDoc' emply.id %}"> edit</a></td>
+            {% else %}
+            <td>
+                not issued <br>
+                <a href="{% url 'dwnldDoc' emply.id %}">generate</a></td>
+            {% endif %}
+            {% if emply.letter_of_intent_issued_date %}
+            <td>{{emply.letter_of_intent_issued_date}}
+                <br><a href="{% url 'letter_of_intent_creation' emply.id %}">edit</a>
+            </td>
+            {% else %}
+            <td>not issued 
+                <br><a href="{% url 'letter_of_intent_creation' emply.id %}">generate</a>
+
+            </td>
+            {% endif %}
+
+            <td>
+                {% if emply.service_agreement_issued_date %}
+                {{emply.service_agreement_issued_date}}<a href="{% url 'create_service_agreement' emply.id %}">edit</a></td>
+                {% else %}
+                not issued <br>
+                <a href="{% url 'create_service_agreement' emply.id %}">generate</a>
+                {% endif %}
+            <td>
+                {% if emply.offer_letter_issued_datetime %}
+                {{emply.offer_letter_issued_datetime}}
+                <a href="{% url 'offer_ltr' emply.id %}">edit</a>
+                {% else %}
+                  not issued <br>
+                  <a href="{% url 'offer_ltr' emply.id %}">generate</a>
+                {% endif %}
+
+            </td>
+
+
+            {% if emply.termination_letter_issued %}
+            <td>
+                {{emply.termination_letter_issued|date:'d b Y H:i:s'}}
+                <a href="{% url 'termination' emply.id %}">edit</a>
+            </td>
+            {% else %}
+            <td>
+                not issued <br>
+                <a href="{% url 'termination' emply.id %}">generate</a>
+            </td>
+            {% endif %}
+            <td><a href="{% url 'hike_info' emply.id %}">info</a></td>
+        </tr>
         {% endfor %}
-    {% endif %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<div>
+    <br>
+    no employee available
+</div>
+{% endif %}
+
+<font color="#EB9100"><h2>Interns</h2></font>
+
+<div class="intern-table-container">
+
+    <table class="intern-table">
+        <thead>
+        <tr>
+            <th>Intern Name</th>
+            <th>Intern role</th>
+            <th>Intern certficate info</th>
+        </tr>
+        </thead>
+    
+        <tbody>
+            {% if interns.count != 0 %}
+            {% for intern in interns %}
+                <tr>
+                    <td>{{intern.name}}</td>
+                    <td>{{intern.role}}</td>
+                    <td>
+                        {{intern.internship_letter_issue_date|date:'d b Y H:i:s'}} <br>
+                        <a href="{% url 'intrn_crtificate_crtn' intern.id %}">edit </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </table>
+        <font color="green">
+            {% for message in messages %}
+    
+                {{message}}
+    
+            {% endfor %}
+        </font>
+        </tbody>
     </table>
-    <font color="green">
-        {% for message in messages %}
-
-            {{message}}
-
-        {% endfor %}
-    </font>
+    </div>
+    
 {% endblock %}

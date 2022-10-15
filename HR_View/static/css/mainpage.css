@@ -6,9 +6,10 @@ body {
 
 
   .form-center {
-    color:aliceblue;
+    position: absolute;
+    
     margin: auto;
-    width: 50%;
+    width: 80%;
     border: 3px solid rgb(31, 12, 12);
     padding: 10px;
     align-items: "center";
@@ -16,7 +17,11 @@ body {
      }
 
      input[type=text],input[date],input[type=number]{
-      width: 220px;
+
+      width: 20%;
+    }
+    input[type=text],input[date],input[type=number]:hover{
+      border:2 px solid #24a0ed;
     }
     input[type=submit]{
       border-color:rgb(89, 200, 202);
@@ -165,7 +170,7 @@ body {
   
   .nav_button{
     position: relative;
-    background-colo: black;
+    background-color: black;
     color: white;
     padding: 0.8em 1.8em;
     cursor:pointer;
@@ -239,22 +244,24 @@ body {
       
        margin-bottom: 30px;
      }
+
+     .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+      @include box-sizing(border-box);
+  
+      &:focus {
+        z-index: 2;
+      }
+    }
    
      .checkbox {
        font-weight: normal;
      }
    
-     .form-control {
-       position: relative;
-       font-size: 16px;
-       height: auto;
-       padding: 10px;
-       @include box-sizing(border-box);
-   
-       &:focus {
-         z-index: 2;
-       }
-     }
+     
    
      input[type="text"] {
        margin-bottom: -1px;
@@ -278,4 +285,137 @@ body {
    }
 
 
-   
+
+
+   body{
+    background:"{% static 'images/fnc logo.png' %}"
+}
+
+input[type=text],input[type=date],input[type=number]{
+width: 220px;
+}
+input[type=submit]{
+border-color:#24a0ed;
+border-radius: 30px;
+
+background-color: DodgerBlue;
+}
+
+body{
+margin:0;
+padding:100px 0 0 40px;
+}
+div#logo_header{
+
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height: 45px;;
+background-color: white;
+border-bottom: 5px solid whitesmoke;
+}
+div#left-sidebar{
+position:absolute;
+top:47px;
+
+left:0;
+width:50px;
+height:100%;
+background-color: rgb(38, 37, 37)  ;
+
+border:5px solid rgb(38, 37, 37) ;
+border-top: 5px solid rgb(38, 37, 37) black;
+
+}
+@media screen{
+body>div#header{
+position:fixed;
+}
+body>div#left-sidebar{
+position:fixed;
+}
+}
+* html body{
+overflow:hidden;
+} 
+* html div#content{
+height:100%;
+overflow:auto;
+margin-left: 60px;
+}
+
+.button_title{
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color: whitesmoke;
+}
+
+
+.sidebar_button{
+top: 100px;;
+font-size: 10px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+display:block;
+background-color:rgb(38, 37, 37) ;
+border:5px solid rgb(38, 37, 37) ;
+color: #000;
+cursor:pointer;
+text-decoration:none;
+
+}
+.sidebar_button:hover {
+background-color: grey;
+border: 5px solid grey;
+box-shadow: 0 0 15px 10px grey;
+animation: anim-shadow 1.2s forwards;
+
+}
+.service_btn{
+align-items: center;
+height: 130px;
+width: 130px;
+padding: .7em 1.5em;
+font-size: 15px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+background-color:whitesmoke;
+border:5px solid whitesmoke;
+color: #000;
+position:absolute;
+cursor:pointer;
+text-decoration:none;
+border-radius: 1em;
+position: relative;
+}
+
+
+
+.service_btn:hover{
+
+color: orange;
+background-color: grey;
+border:2px solid rgba(112,111,211,1);
+box-shadow: 0 0 10px 40px white;
+animation: anim-shadow .5s forwards;
+
+}
+
+a{
+
+text-decoration: none;
+}
+@keyframes anim-shadow {
+100%{
+
+box-shadow: 0 px 0px 0px 1px rgba(112,111,211,0);
+}
+
+}
+
+/*.service_btn:hover {
+border: 10px solid #f9e506;
+
+box-shadow: 0 0 10px 40px white;
+/*background-color: grey;*/
+
+}*/
