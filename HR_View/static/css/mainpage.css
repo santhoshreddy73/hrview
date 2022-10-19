@@ -4,32 +4,6 @@ body {
   
 
 
-
-  .form-center {
-    position: absolute;
-    
-    margin: auto;
-    width: 80%;
-    border: 3px solid rgb(31, 12, 12);
-    padding: 10px;
-    align-items: "center";
-    background-color: rgb(123, 104, 83);
-     }
-
-     input[type=text],input[date],input[type=number]{
-
-      width: 20%;
-    }
-    input[type=text],input[date],input[type=number]:hover{
-      border:2 px solid #24a0ed;
-    }
-    input[type=submit]{
-      border-color:rgb(89, 200, 202);
-      border-radius: 25px;
-
-      background-color: rgb(89, 200, 202);
-    }
-    
   .sidenav {
     height: 100%;
     width: 75px;
@@ -291,15 +265,6 @@ body {
     background:"{% static 'images/fnc logo.png' %}"
 }
 
-input[type=text],input[type=date],input[type=number]{
-width: 220px;
-}
-input[type=submit]{
-border-color:#24a0ed;
-border-radius: 30px;
-
-background-color: DodgerBlue;
-}
 
 body{
 margin:0;
@@ -412,10 +377,20 @@ box-shadow: 0 px 0px 0px 1px rgba(112,111,211,0);
 
 }
 
+form-center {
+  color:black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: auto;
+  width: 50%;
+  border: 3px solid whitesmoke;
+  padding: 10px;
+  align-items: "center";
+  background-color: whitesmoke;
+  }
+
 /*.service_btn:hover {
 border: 10px solid #f9e506;
 
 box-shadow: 0 0 10px 40px white;
 /*background-color: grey;*/
 
-}*/

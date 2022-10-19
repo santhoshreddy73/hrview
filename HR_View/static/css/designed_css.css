@@ -906,3 +906,7 @@ th{
 th,td,tr{
   text-align: left;
 }
+
+label{
+  text-transform: capitalize;
+}

@@ -7,25 +7,69 @@
     }
     
     /* Create two equal columns that floats next to each other */
-    .column {
-      float: left;
-      width: 50%;
-      padding: 10px;
-      height: 450px; /* Should be removed. Only for demonstration */
-    }
     
-    /* Clear floats after the columns */
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
     input[type=submit]{
       border-color:rgb(62, 211, 221);
       border-radius: 25px;
 
       background-color: rgb(62, 211, 221);
     }
+    .flexbox-model{
+      display: grid;
+      font-family: font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      grid-template-columns: 1fr 1fr;
+      justify-content: space-around;
+      justify-content: center;
+    }
+
+    .flexbox-model h{
+      display: block;
+    }
+    input[type=text],input[type=date],input[type=number]{
+            width: 80%;
+            height: 1.5rem;
+            
+        }
+
+        input[type=submit]{
+            width:40%;
+            place-items: center;
+            color: #fff;
+            margin-top: 1rem;
+            height: 2.5rem;
+            display: -ms-inline-grid;
+            background-color: #007bff;
+            align-items: start;
+            border-radius: .3rem;
+            border:none;
+
+        }
+        
+      .gridbox-model{
+       
+        display:block;
+        
+        align-items: center;
+        margin: auto;
+        grid-template-columns: 0.5fr;
+        width:70%;
+        justify-content: center;
+        border:2px dashed black;
+        padding: 30px;
+      }
+      .gridbox-model label{
+        display: block;
+      }
+
+      .flexbox-model .left{
+        line-height: 2rem;
+      }
+
+      .flexbox-model .right
+      {
+       
+        line-height: 1.5rem;
+      }
     </style>
 
 
@@ -39,62 +83,61 @@
     {% endif %}
 {% endfor %}
 
-<div background-color="" align="center">
- <form method="post"  class="form-center">
-      <h2> offer letter creation</h2>
+<div class="gridbox-model">
+  <h2> offer letter creation</h2>
+      <p>
+       ('leave it as zero in fields in salary commponents,if there is no need to mention in generating letter')
+      </p>
+ <form method="post"  class="flexbox-model">
       
-    ('leave it as zero in fields in salary commponents,if there is no need to mention in generating letter')<br>
     {% csrf_token %}
-    <div class="column" align="left">
-
-        <br><br><br>
+    <div class="left">
+      
+       <br>
         Mr/Ms/Miss:<select name="header" id="header" >
           <option value="Mr">Mr</option>
           <option value="Ms">Ms</option>
           <option value="miss">Miss</option>
-      </select><br><br>
-        <label for="">name</label><br>
-        <input type="text" value="{{emp.name}}" name="name" required size="28"><br><br>  
-        <label for="">role</label><br>
-        <input type="text" value="{{emp.role}}" name="role" required size=28"><br><br>
+      </select>
+        <label for="name">name</label>
+        <input type="text" value="{{emp.name}}" name="name" id="name" required size="28">
+        <label for="role">role</label>
+        <input type="text" value="{{emp.role}}" name="role" id="role" required size=28">
 
-        <label for="">date</label><br>
-        <input type="date" name="date" id="date" required style="width: 220px;"><br>
-       <input type="checkbox" id="checkbox" onclick="datecheck()" value="use today date"> Use Today's date
+        <label for="date">date <input type="checkbox" id="checkbox" onclick="datecheck()" value="use today date"> Use Today's date</label>
+        <input type="date" name="date" id="date" required ><br>
+        <br><input type="submit" value="create document" >
     </div>
-<div align="left">
-    <br>
+<div class="right">
+    
     <h4> Salary components </h4>
 
-    <label for="">BAsic pay</label><br>
+    <label for="basic">BAsic pay</label>
    
-    <input type="number" name="basic" id="basic" size="28" required><br>
+    <input type="number" name="basic" id="basic" size="28" required>
 
-    <label for="">HRa</label><br>
-    <input type="number" id="hra" name="hra" size="28" value="0" required><br><br>
-
-    <label for="">Variable pay type: </label>
+    <label for="hra">HRa</label>
+    <input type="number" id="hra" name="hra" size="28" value="0" required> <br>
     
-    &nbsp;<select name="variable_pay_type" id="">
+    <label for="vpaytype">Variable pay type: 
+    &nbsp;<select name="variable_pay_type" id="vpaytype">
       <option value="Monthly">Monthly</option>
       <option value="Quaterly">Quaterly</option>
       <option value="Half-Yearly">Half-Yearly</option>
       <option value="Yearly">Yearly</option>
-    </select><br><br>
-    <label for="">Variable pay</label><br>
-    <input type="number" id="variable_pay" name="variable_pay" value="0" required size="30"><br>
+    </select>
+  </label>
+    <label for="variable_pay">Variable pay</label>
+    <input type="number" id="variable_pay" name="variable_pay" value="0" required size="30"> <br>
 
-    <label for="">Lta</label><br>
-    <input type="number" id="lta" name="lta" value="0" required size="28"><br>
+    <label for="lta">Lta</label>
+    <input type="number" id="lta" name="lta" value="0" required size="28">
 
-    <label for="">special allowance</label><br>
-    <input type="number" id="spl_allowance" value="0" required name="spl_allowance" size="28"><br>
-    <br>
-    <input type="submit" value="create document">
+    <label for="spl_allowance">special allowance</label>
+    <input type="number" id="spl_allowance" value="0" required name="spl_allowance" size="28">
     
     <div id="sum"></div>
 </div>
-
  </form>
 
  <script>
